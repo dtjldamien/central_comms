@@ -1,0 +1,14 @@
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\obj\Debug\netcoreapp3.1\Updates.Repo.csprojAssemblyReference.cache
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\obj\Debug\netcoreapp3.1\Updates.Repo.AssemblyInfoInputs.cache
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\obj\Debug\netcoreapp3.1\Updates.Repo.AssemblyInfo.cs
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\obj\Debug\netcoreapp3.1\Updates.Repo.csproj.CoreCompileInputs.cache
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\bin\Debug\netcoreapp3.1\Updates.Repo.deps.json
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\bin\Debug\netcoreapp3.1\Updates.Repo.dll
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\bin\Debug\netcoreapp3.1\Updates.Repo.pdb
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\bin\Debug\netcoreapp3.1\Updates.Data.dll
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\bin\Debug\netcoreapp3.1\Updates.Services.dll
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\bin\Debug\netcoreapp3.1\Updates.Data.pdb
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\bin\Debug\netcoreapp3.1\Updates.Services.pdb
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\obj\Debug\netcoreapp3.1\Updates.Repo.csproj.CopyComplete
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\obj\Debug\netcoreapp3.1\Updates.Repo.dll
+C:\Users\dtjld\Desktop\central_comms\Update.Repo\obj\Debug\netcoreapp3.1\Updates.Repo.pdb
