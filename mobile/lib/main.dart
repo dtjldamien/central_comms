@@ -1,3 +1,4 @@
+import 'package:central_comms/opening.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -39,7 +40,6 @@ class MyWidget extends StatelessWidget {
         ),
         body: Center(
           child: Scrollbar(
-            isAlwaysShown: true,
             child: new ListView(shrinkWrap: true, children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -71,7 +71,13 @@ class MyWidget extends StatelessWidget {
                         color: Colors.white,
                         height: 40.0,
                         child: RaisedButton(
-                          onPressed: () => {},
+                          onPressed: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => OpeningPage()),
+                            ),
+                          },
                           color: Colors.redAccent,
                           child: RichText(
                             textAlign: TextAlign.center,
@@ -127,7 +133,9 @@ class MyWidget extends StatelessWidget {
                     padding: EdgeInsets.only(bottom: 30, top: 40),
                     height: 120,
                     child: RaisedButton(
-                      onPressed: () => {},
+                      onPressed: () => {
+                        // do something
+                      },
                       color: Colors.red,
                       child: Text(
                         'Read more',
