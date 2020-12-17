@@ -19,7 +19,7 @@ namespace central_comms_backend
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //IServiceCollection serviceCollections = services.AddDbContext<UpdateDbContext>(opt => opt.UseInMemoryDatabase("DB"));
+            IServiceCollection serviceCollections = services.AddDbContext<UpdateDbContext>(opt => opt.UseInMemoryDatabase("DB"));
             services.AddControllersWithViews();
             services.AddSession();
             services.AddTransient<IUpdate, UpdateRepo>();
