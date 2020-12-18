@@ -34,32 +34,58 @@ class OpeningPage extends StatelessWidget {
               ),
               onPressed: () {
                 // do something
-                          showDialog(
-            context: context,
-            builder: (context) {
-              return Dialog(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                elevation: 16,
-                child: Container(
-                  height: MediaQuery.of(context).size.height - 100,
-                  width: MediaQuery.of(context).size.width - 40,
-                  child: ListView(
-                    children: <Widget>[
-                      SizedBox(height: 20),
-                      Center(
-                        child: Text(
-                          "Change to text field",
-                          style: TextStyle(fontSize: 24, color: Colors.black, fontWeight: FontWeight.bold),
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Dialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      elevation: 16,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height - 100,
+                        width: MediaQuery.of(context).size.width - 40,
+                        child: ListView(
+                          children: <Widget>[
+                            Padding(padding: EdgeInsets.only(top: 20)),
+                            Center(
+                              child: Text(
+                                "Change to text field",
+                                style: TextStyle(
+                                    fontSize: 24,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                     
+
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+  mainAxisSize: MainAxisSize.max,
+  mainAxisAlignment: MainAxisAlignment.end,
+                            
+                              children: <Widget>[
+                                                          Align(
+                                                            alignment: FractionalOffset.bottomRight,
+                                                                                                                      child: FlatButton(onPressed: (){
+                              
+                              },
+                               
+                                color: Colors.amber,
+                                minWidth: MediaQuery.of(context).size.width /3,
+                              child: Text(
+                                'Done',
+
+                              ),
+                              ),
+                                                          ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(height: 20),
-
-                    ],
-                  ),
-                ),
-              );
-            },
-          );
+                    );
+                  },
+                );
               },
             )
           ],
@@ -73,12 +99,12 @@ class OpeningPage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(top: 20),
                 child: Text(
-                  'Feeds',
+                  'Feed',
                   textAlign: TextAlign.center,
-style: GoogleFonts.lato(fontStyle: FontStyle.italic,
-fontSize: 100,
-fontWeight: FontWeight.bold),
-
+                  style: GoogleFonts.lato(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 100,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
@@ -101,12 +127,9 @@ fontWeight: FontWeight.bold),
                 ),
               ),
               SingleChildScrollView(
-
-
                 child: Container(
                   alignment: Alignment.center,
                   height: 70,
-      
                   color: Colors.white,
                   child: Scrollbar(
                     child: ListView(
@@ -267,17 +290,12 @@ fontWeight: FontWeight.bold),
                   bottom: 10,
                 ),
               ),
-
               Expanded(
-
-                
-                              child: SingleChildScrollView(
-            
+                child: SingleChildScrollView(
                   child: Scrollbar(
                     isAlwaysShown: true,
                     child: new ListView(
                       scrollDirection: Axis.vertical,
-                    
                       shrinkWrap: true,
                       padding: EdgeInsets.only(left: 20, right: 20),
                       children: [
@@ -292,23 +310,25 @@ fontWeight: FontWeight.bold),
                                 //do something
                               },
                               child: Container(
-                                
                                 height: 140,
                                 color: Colors.white,
                                 child: Row(
                                   children: <Widget>[
                                     Image.asset(
                                       'assets/images/OHS.png',
-                                      width: (MediaQuery.of(context).size.width -
-                                          70) / 2,
+                                      width:
+                                          (MediaQuery.of(context).size.width -
+                                                  70) /
+                                              2,
                                       height: 140,
                                     ),
-
-                                    Padding(padding: EdgeInsets.only(right: 10)),
+                                    Padding(
+                                        padding: EdgeInsets.only(right: 10)),
                                     Column(
-                                      
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
                                           '21 December 2020',
@@ -318,18 +338,17 @@ fontWeight: FontWeight.bold),
                                           ),
                                           // textAlign: TextAlign.left,
                                         ),
-                                         
-                                         
-
                                         Expanded(
-                                           
                                           child: Container(
                                             alignment: Alignment.center,
-                                            width: (MediaQuery.of(context).size.width / 2 ) - 52,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2) -
+                                                52,
                                             color: Colors.white,
-                                             child: Text(
+                                            child: Text(
                                               'This is an important notice, please take note of it.',
-                                             
                                               softWrap: true,
                                               style: TextStyle(
                                                 fontSize: 20,
@@ -343,31 +362,31 @@ fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
-
-Padding(padding: EdgeInsets.only(bottom: 10)),
-
+                            Padding(padding: EdgeInsets.only(bottom: 10)),
                             FlatButton(
                               onPressed: () {
                                 //do something
                               },
                               child: Container(
-                                
                                 height: 140,
                                 color: Colors.white,
                                 child: Row(
                                   children: <Widget>[
                                     Image.asset(
                                       'assets/images/OHS.png',
-                                      width: (MediaQuery.of(context).size.width -
-                                          70) / 2,
+                                      width:
+                                          (MediaQuery.of(context).size.width -
+                                                  70) /
+                                              2,
                                       height: 140,
                                     ),
-
-                                    Padding(padding: EdgeInsets.only(right: 10)),
+                                    Padding(
+                                        padding: EdgeInsets.only(right: 10)),
                                     Column(
-                                      
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
                                           '21 December 2020',
@@ -377,18 +396,17 @@ Padding(padding: EdgeInsets.only(bottom: 10)),
                                           ),
                                           // textAlign: TextAlign.left,
                                         ),
-                                         
-                                         
-
                                         Expanded(
-                                           
                                           child: Container(
                                             alignment: Alignment.center,
-                                            width: (MediaQuery.of(context).size.width / 2 ) - 52,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2) -
+                                                52,
                                             color: Colors.white,
-                                             child: Text(
+                                            child: Text(
                                               'This is an important notice, please take note of it.',
-                                             
                                               softWrap: true,
                                               style: TextStyle(
                                                 fontSize: 20,
@@ -402,32 +420,31 @@ Padding(padding: EdgeInsets.only(bottom: 10)),
                                 ),
                               ),
                             ),
-
-
-Padding(padding: EdgeInsets.only(bottom: 10)),
-
+                            Padding(padding: EdgeInsets.only(bottom: 10)),
                             FlatButton(
                               onPressed: () {
                                 //do something
                               },
                               child: Container(
-                                
                                 height: 140,
                                 color: Colors.white,
                                 child: Row(
                                   children: <Widget>[
                                     Image.asset(
                                       'assets/images/OHS.png',
-                                      width: (MediaQuery.of(context).size.width -
-                                          70) / 2,
+                                      width:
+                                          (MediaQuery.of(context).size.width -
+                                                  70) /
+                                              2,
                                       height: 140,
                                     ),
-
-                                    Padding(padding: EdgeInsets.only(right: 10)),
+                                    Padding(
+                                        padding: EdgeInsets.only(right: 10)),
                                     Column(
-                                      
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
                                           '21 December 2020',
@@ -437,18 +454,17 @@ Padding(padding: EdgeInsets.only(bottom: 10)),
                                           ),
                                           // textAlign: TextAlign.left,
                                         ),
-                                         
-                                         
-
                                         Expanded(
-                                           
                                           child: Container(
                                             alignment: Alignment.center,
-                                            width: (MediaQuery.of(context).size.width / 2 ) - 52,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2) -
+                                                52,
                                             color: Colors.white,
-                                             child: Text(
+                                            child: Text(
                                               'This is an important notice, please take note of it.',
-                                             
                                               softWrap: true,
                                               style: TextStyle(
                                                 fontSize: 20,
@@ -462,9 +478,6 @@ Padding(padding: EdgeInsets.only(bottom: 10)),
                                 ),
                               ),
                             ),
-
-
-                            
                           ],
                         ),
                       ],
