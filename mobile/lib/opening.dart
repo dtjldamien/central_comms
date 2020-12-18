@@ -73,7 +73,7 @@ class OpeningPage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(top: 20),
                 child: Text(
-                  'Feed',
+                  'Feeds',
                   textAlign: TextAlign.center,
 style: GoogleFonts.lato(fontStyle: FontStyle.italic,
 fontSize: 100,
