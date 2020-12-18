@@ -34,6 +34,32 @@ class OpeningPage extends StatelessWidget {
               ),
               onPressed: () {
                 // do something
+                          showDialog(
+            context: context,
+            builder: (context) {
+              return Dialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                elevation: 16,
+                child: Container(
+                  height: MediaQuery.of(context).size.height - 100,
+                  width: MediaQuery.of(context).size.width - 40,
+                  child: ListView(
+                    children: <Widget>[
+                      SizedBox(height: 20),
+                      Center(
+                        child: Text(
+                          "Change to text field",
+                          style: TextStyle(fontSize: 24, color: Colors.black, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
               },
             )
           ],
