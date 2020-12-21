@@ -20,10 +20,20 @@ class MyWidget extends StatelessWidget {
     return new MaterialApp(
       home: new Scaffold(
         appBar: AppBar(
-          leading: Icon(
-            Icons.close_rounded,
-            color: Colors.black,
+
+          leading: GestureDetector(
+            onTap: () { 
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => OpeningPage()),
+              );
+            },
+            child: Icon(
+              Icons.close_rounded,  // add custom icons also
+              color: color4,
+            ),
           ),
+
           backgroundColor: Colors.white,
           actions: <Widget>[
             Padding(
@@ -32,7 +42,7 @@ class MyWidget extends StatelessWidget {
                 onTap: () {},
                 child: Icon(
                   Icons.delete,
-                  color: Colors.black,
+                  color: color4,
                 ),
               ),
             )
@@ -53,17 +63,20 @@ class MyWidget extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    
                     children: <Widget>[
                       Container(
                         color: Colors.white,
                         height: 50.0,
-                        child: Text(
-                          'Posted on 16 December 2020',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
+                        child: Center(
+                          child: Text(
+                            'Posted on 16 December 2020',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -72,11 +85,7 @@ class MyWidget extends StatelessWidget {
                         height: 40.0,
                         child: RaisedButton(
                           onPressed: () => {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => OpeningPage()),
-                            ),
+                            //do something
                           },
                           color: Colors.redAccent,
                           child: RichText(
@@ -107,7 +116,7 @@ class MyWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Padding(padding: EdgeInsets.only(top: 20)),
+                  Padding(padding: EdgeInsets.only(top: 10)),
                   Container(
                     color: Colors.white,
                     width: MediaQuery.of(context).size.width - 50,
