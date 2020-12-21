@@ -68,7 +68,7 @@ class OpeningPage extends StatelessWidget {
                       child: Container(
                         height: MediaQuery.of(context).size.height - 100,
                         width: MediaQuery.of(context).size.width - 40,
-                        child: ListView(
+                        child: Column(
                           children: <Widget>[
                             Padding(padding: EdgeInsets.only(top: 20)),
                             Center(
@@ -80,24 +80,54 @@ class OpeningPage extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Align(
-                                  alignment: FractionalOffset.bottomRight,
-                                  child: FlatButton(
-                                    onPressed: () {},
-                                    color: Colors.amber,
-                                    minWidth:
-                                        MediaQuery.of(context).size.width / 3,
-                                    child: Text(
-                                      'Done',
+
+                            Padding(padding: EdgeInsets.only(top: 30),),
+
+                            Center(
+                              child: SingleChildScrollView(
+
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width - 90,
+                                  height: MediaQuery.of(context).size.width,
+                                  color: color1,  
+                                  child: Scrollbar(
+                                    child: ListView(
+                                      scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
+                                      children: [
+                                        Column (
+                                          children: <Widget>[
+                                            Container(height: 200,color: color2,width: 50,),
+                                            Padding(padding: EdgeInsets.only(top: 20)),
+                                            Container(height: 200,color: color2,width: 50,),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              ],
+                              ),
+                            ),
+
+                            Padding(padding: EdgeInsets.only(top: 30),),
+
+                            Center(
+                              child: Column(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: FractionalOffset.center,
+                                    child: FlatButton(
+                                      onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                                      color: Colors.amber,
+                                      minWidth:
+                                          MediaQuery.of(context).size.width / 3,
+                                      child: Text(
+                                        'Done',
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -147,6 +177,7 @@ class OpeningPage extends StatelessWidget {
                 ),
               ),
               SingleChildScrollView(
+
                 child: Container(
                   alignment: Alignment.center,
                   height: 70,
