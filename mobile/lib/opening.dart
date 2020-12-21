@@ -21,21 +21,18 @@ class OpeningPage extends StatelessWidget {
       home: new Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-
-  leading: GestureDetector(
-    onTap: () { 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyWidget()),
-                );
-    },
-    child: Icon(
-      
-      Icons.arrow_back_ios,  // add custom icons also
-      color: color4,
-    ),
-  ),
-
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyWidget()),
+              );
+            },
+            child: Icon(
+              Icons.arrow_back_ios, // add custom icons also
+              color: color4,
+            ),
+          ),
           backgroundColor: Colors.white,
           actions: <Widget>[
             IconButton(
@@ -61,85 +58,13 @@ class OpeningPage extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) {
-                    return Dialog(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 16,
-                      child: Container(
-                        height: MediaQuery.of(context).size.height - 100,
-                        width: MediaQuery.of(context).size.width - 40,
-                        child: Column(
-                          children: <Widget>[
-                            Padding(padding: EdgeInsets.only(top: 20)),
-                            Center(
-                              child: Text(
-                                "Change to text field",
-                                style: TextStyle(
-                                    fontSize: 24,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-
-                            Padding(padding: EdgeInsets.only(top: 30),),
-
-                            Center(
-                              child: SingleChildScrollView(
-
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width - 90,
-                                  height: MediaQuery.of(context).size.width,
-                                  color: color1,  
-                                  child: Scrollbar(
-                                    child: ListView(
-                                      scrollDirection: Axis.horizontal,
-                                      shrinkWrap: true,
-                                      children: [
-                                        Column (
-                                          children: <Widget>[
-                                            Container(height: 200,color: color2,width: 50,),
-                                            Padding(padding: EdgeInsets.only(top: 20)),
-                                            Container(height: 200,color: color2,width: 50,),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                            Padding(padding: EdgeInsets.only(top: 30),),
-
-                            Center(
-                              child: Column(
-                                children: <Widget>[
-                                  Align(
-                                    alignment: FractionalOffset.center,
-                                    child: FlatButton(
-                                      onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
-                                      color: Colors.amber,
-                                      minWidth:
-                                          MediaQuery.of(context).size.width / 3,
-                                      child: Text(
-                                        'Done',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
+                    return AddFolder();
                   },
                 );
               },
             )
           ],
         ),
-
         body: Align(
           alignment: Alignment.center,
           child: Column(
@@ -177,7 +102,6 @@ class OpeningPage extends StatelessWidget {
                 ),
               ),
               SingleChildScrollView(
-
                 child: Container(
                   alignment: Alignment.center,
                   height: 70,
@@ -407,10 +331,10 @@ class OpeningPage extends StatelessWidget {
               Expanded(
                 child: SingleChildScrollView(
                   child: Container(
-                    height: (MediaQuery.of(context).size.height / 2 ) - 50,
+                    height: (MediaQuery.of(context).size.height / 2) - 50,
                     // margin: EdgeInsets.only(bottom: 20),
 
-                                      child: Scrollbar(
+                    child: Scrollbar(
                       isAlwaysShown: true,
                       child: new ListView(
                         scrollDirection: Axis.vertical,
@@ -425,7 +349,6 @@ class OpeningPage extends StatelessWidget {
                               ),
                               FlatButton(
                                 onPressed: () {
-                      
                                   //do something
                                 },
                                 child: Container(
@@ -460,7 +383,11 @@ class OpeningPage extends StatelessWidget {
                                           Expanded(
                                             child: Container(
                                               alignment: Alignment.center,
-                                              width: (MediaQuery.of(context).size.width/2)-52,
+                                              width: (MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2) -
+                                                  52,
                                               color: Colors.white,
                                               child: Text(
                                                 'This is an important notice, please take note of it.',
@@ -491,7 +418,8 @@ class OpeningPage extends StatelessWidget {
                                         'assets/images/OHS.png',
                                         width:
                                             (MediaQuery.of(context).size.width -
-                                                    70)/2,
+                                                    70) /
+                                                2,
                                         height: 140,
                                       ),
                                       Padding(
@@ -513,7 +441,11 @@ class OpeningPage extends StatelessWidget {
                                           Expanded(
                                             child: Container(
                                               alignment: Alignment.center,
-                                              width: (MediaQuery.of(context).size.width/2)-52,
+                                              width: (MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2) -
+                                                  52,
                                               color: Colors.white,
                                               child: Text(
                                                 'This is an important notice, please take note of it.',
@@ -598,6 +530,96 @@ class OpeningPage extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class AddFolder extends StatefulWidget {
+  @override
+  _AddFolder createState() => _AddFolder();
+}
+
+class _AddFolder extends State<AddFolder> {
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      elevation: 16,
+      child: Container(
+        height: MediaQuery.of(context).size.height - 100,
+        width: MediaQuery.of(context).size.width - 40,
+        child: Column(
+          children: <Widget>[
+            Padding(padding: EdgeInsets.only(top: 20)),
+            Center(
+              child: Text(
+                "Change to text field",
+                style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 30),
+            ),
+            Center(
+              child: SingleChildScrollView(
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 90,
+                  height: MediaQuery.of(context).size.width,
+                  color: color1,
+                  child: Scrollbar(
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              height: 20,
+                              width: MediaQuery.of(context).size.width - 180,
+                              child: Text(
+                                'Office of Finance',
+                              ),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.blueAccent, width: 2),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 30),
+            ),
+            Center(
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: FractionalOffset.center,
+                    child: FlatButton(
+                      onPressed: () =>
+                          Navigator.of(context, rootNavigator: true).pop(),
+                      color: Colors.amber,
+                      minWidth: MediaQuery.of(context).size.width / 3,
+                      child: Text(
+                        'Done',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
