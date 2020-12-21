@@ -142,11 +142,6 @@ class OpeningPage extends StatelessWidget {
                                     color: grey4,
                                   ),
                                 ),
-// shape: RoundedRectangleBorder(
-//   borderRadius: BorderRadius.circular(20.0),
-//   side: BorderSide(color: color1),
-// ),
-
                                 height: 70,
                                 minWidth: 80,
                                 onPressed: () => {
@@ -380,21 +375,20 @@ class OpeningPage extends StatelessWidget {
                                             ),
                                             // textAlign: TextAlign.left,
                                           ),
-                                          Expanded(
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              width: (MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      2) -
-                                                  52,
-                                              color: Colors.white,
-                                              child: Text(
-                                                'This is an important notice, please take note of it.',
-                                                softWrap: true,
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                ),
+                                          Container(
+                                            padding: EdgeInsets.only(top: 5),
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2) -
+                                                52,
+                                            color: Colors.white,
+                                            child: Text(
+                                              'This is an important notice, please take note of it.',
+                                              softWrap: true,
+                                              style: TextStyle(
+                                                fontSize: 20,
                                               ),
                                             ),
                                           ),
@@ -438,21 +432,20 @@ class OpeningPage extends StatelessWidget {
                                             ),
                                             // textAlign: TextAlign.left,
                                           ),
-                                          Expanded(
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              width: (MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      2) -
-                                                  52,
-                                              color: Colors.white,
-                                              child: Text(
-                                                'This is an important notice, please take note of it.',
-                                                softWrap: true,
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                ),
+                                          Container(
+                                            padding: EdgeInsets.only(top: 5),
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2) -
+                                                52,
+                                            color: Colors.white,
+                                            child: Text(
+                                              'This is an important notice, please take note of it.',
+                                              softWrap: true,
+                                              style: TextStyle(
+                                                fontSize: 20,
                                               ),
                                             ),
                                           ),
@@ -484,7 +477,7 @@ class OpeningPage extends StatelessWidget {
                                           padding: EdgeInsets.only(right: 10)),
                                       Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.center,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
@@ -496,21 +489,20 @@ class OpeningPage extends StatelessWidget {
                                             ),
                                             // textAlign: TextAlign.left,
                                           ),
-                                          Expanded(
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              width: (MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      2) -
-                                                  52,
-                                              color: Colors.white,
-                                              child: Text(
-                                                'This is an important notice, please take note of it.',
-                                                softWrap: true,
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                ),
+                                          Container(
+                                            padding: EdgeInsets.only(top: 5),
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2) -
+                                                52,
+                                            color: Colors.white,
+                                            child: Text(
+                                              'This is an important notice, please take note of it.',
+                                              softWrap: true,
+                                              style: TextStyle(
+                                                fontSize: 20,
                                               ),
                                             ),
                                           ),
@@ -543,11 +535,12 @@ class AddFolder extends StatefulWidget {
 
 class _AddFolder extends State<AddFolder> {
   Color color;
+  int isTapped;
 
   @override
   void initState() {
     super.initState();
-
+    isTapped = 0;
     color = Colors.transparent;
   }
 
@@ -589,16 +582,33 @@ class _AddFolder extends State<AddFolder> {
                           children: <Widget>[
                             Container(
                               width: MediaQuery.of(context).size.width - 180,
-                                decoration: BoxDecoration(
+                              decoration: BoxDecoration(
                                   color: color,
-                                  border: Border.all(color: grey4)
+                                  border: Border.all(color: grey4)),
+                              child: ListTile(
+                                title: Text(
+                                  'Office of Finance',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
                                 ),
-                              child: ListTile(     
-                                title: Text('Office of Finance', style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),),
-                              
+                                onTap: () {
+                                  setState(() {
+                                    color = (isTapped % 2) == 0
+                                        ? Colors.lightBlue
+                                        : Colors.transparent;
+                                    isTapped++;
+                                    print(isTapped);
+                                  });
+                                },
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              color: color,
+                              child: ListTile(
+                                subtitle: Text('Circulars'),
                                 onTap: () {
                                   setState(() {
                                     color = Colors.lightBlueAccent;
@@ -609,21 +619,7 @@ class _AddFolder extends State<AddFolder> {
                             Container(
                               width: MediaQuery.of(context).size.width - 180,
                               color: color,
-                              child: ListTile( 
-                                    
-                                subtitle: Text('Circulars'),
-                                onTap: () {
-                                  setState(() {
-                                    color = Colors.lightBlueAccent;
-                                  });
-                                },
-                              ),
-                            ),
-                                                        Container(
-                              width: MediaQuery.of(context).size.width - 180,
-                              color: color,
-                              child: ListTile(     
-                                
+                              child: ListTile(
                                 subtitle: Text('Notices'),
                                 onTap: () {
                                   setState(() {
@@ -635,8 +631,7 @@ class _AddFolder extends State<AddFolder> {
                             Container(
                               width: MediaQuery.of(context).size.width - 180,
                               color: color,
-                              child: ListTile(     
-                                
+                              child: ListTile(
                                 subtitle: Text('Announcements'),
                                 onTap: () {
                                   setState(() {
@@ -648,12 +643,27 @@ class _AddFolder extends State<AddFolder> {
                             Container(
                               width: MediaQuery.of(context).size.width - 180,
                               color: color,
-                              child: ListTile(     
-                                title: Text('Office of Student Affair', style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),),
-                              
+                              child: ListTile(
+                                title: Text(
+                                  'Office of Student Affair',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    color = Colors.lightBlueAccent;
+                                  });
+                                  // print('clicked');
+                                },
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              color: color,
+                              child: ListTile(
+                                subtitle: Text('Circulars'),
                                 onTap: () {
                                   setState(() {
                                     color = Colors.lightBlueAccent;
@@ -664,21 +674,7 @@ class _AddFolder extends State<AddFolder> {
                             Container(
                               width: MediaQuery.of(context).size.width - 180,
                               color: color,
-                              child: ListTile( 
-                                    
-                                subtitle: Text('Circulars'),
-                                onTap: () {
-                                  setState(() {
-                                    color = Colors.lightBlueAccent;
-                                  });
-                                },
-                              ),
-                            ),
-                                                        Container(
-                              width: MediaQuery.of(context).size.width - 180,
-                              color: color,
-                              child: ListTile(     
-                                
+                              child: ListTile(
                                 subtitle: Text('Notices'),
                                 onTap: () {
                                   setState(() {
@@ -690,8 +686,7 @@ class _AddFolder extends State<AddFolder> {
                             Container(
                               width: MediaQuery.of(context).size.width - 180,
                               color: color,
-                              child: ListTile(     
-                                
+                              child: ListTile(
                                 subtitle: Text('Announcements'),
                                 onTap: () {
                                   setState(() {

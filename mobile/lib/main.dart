@@ -63,17 +63,20 @@ class MyWidget extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    
                     children: <Widget>[
                       Container(
                         color: Colors.white,
                         height: 50.0,
-                        child: Text(
-                          'Posted on 16 December 2020',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
+                        child: Center(
+                          child: Text(
+                            'Posted on 16 December 2020',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -113,7 +116,7 @@ class MyWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Padding(padding: EdgeInsets.only(top: 20)),
+                  Padding(padding: EdgeInsets.only(top: 10)),
                   Container(
                     color: Colors.white,
                     width: MediaQuery.of(context).size.width - 50,
