@@ -1,5 +1,18 @@
+import 'package:central_comms/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+final Color color1 = Colors.red;
+final Color color2 = Colors.green;
+final Color color3 = Colors.orange;
+final Color color4 = Colors.grey;
+final Color color5 = Colors.black;
+final Color color6 = Colors.blue;
+final Color color7 = Colors.pink;
+final Color color8 = Colors.purple;
+final Color grey4 = Colors.grey.shade400;
+final Color grey7 = Colors.grey.shade700;
+final Color grey1 = Colors.grey.shade100;
 
 class OpeningPage extends StatelessWidget {
   @override
@@ -8,10 +21,21 @@ class OpeningPage extends StatelessWidget {
       home: new Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          leading: Icon(
-            Icons.arrow_back_ios_rounded,
-            color: Colors.grey,
-          ),
+
+  leading: GestureDetector(
+    onTap: () { 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyWidget()),
+                );
+    },
+    child: Icon(
+      
+      Icons.arrow_back_ios,  // add custom icons also
+      color: color4,
+    ),
+  ),
+
           backgroundColor: Colors.white,
           actions: <Widget>[
             IconButton(
@@ -19,10 +43,10 @@ class OpeningPage extends StatelessWidget {
               icon: Icon(
                 Icons.delete_rounded,
                 size: 30,
-                color: Colors.grey,
+                color: color4,
               ),
               onPressed: () {
-                // do something
+//do something
               },
             ),
             IconButton(
@@ -30,7 +54,7 @@ class OpeningPage extends StatelessWidget {
               icon: Icon(
                 Icons.add,
                 size: 30,
-                color: Colors.grey,
+                color: color4,
               ),
               onPressed: () {
                 // do something
@@ -56,28 +80,23 @@ class OpeningPage extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
-                     
-
                             Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-  mainAxisSize: MainAxisSize.max,
-  mainAxisAlignment: MainAxisAlignment.end,
-                            
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
-                                                          Align(
-                                                            alignment: FractionalOffset.bottomRight,
-                                                                                                                      child: FlatButton(onPressed: (){
-                              
-                              },
-                               
-                                color: Colors.amber,
-                                minWidth: MediaQuery.of(context).size.width /3,
-                              child: Text(
-                                'Done',
-
-                              ),
-                              ),
-                                                          ),
+                                Align(
+                                  alignment: FractionalOffset.bottomRight,
+                                  child: FlatButton(
+                                    onPressed: () {},
+                                    color: Colors.amber,
+                                    minWidth:
+                                        MediaQuery.of(context).size.width / 3,
+                                    child: Text(
+                                      'Done',
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ],
@@ -110,7 +129,7 @@ class OpeningPage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 width: MediaQuery.of(context).size.width - 40,
-                color: Colors.grey.shade100,
+                color: grey1,
                 child: TextField(
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.text,
@@ -142,46 +161,85 @@ class OpeningPage extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                             ),
-                            FlatButton(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(color: Colors.grey.shade300),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(100.0),
+                                  topRight: Radius.circular(100),
+                                  bottomLeft: Radius.zero,
+                                  bottomRight: Radius.zero,
+                                ),
                               ),
-                              height: 70,
-                              minWidth: 70,
-                              onPressed: () => {
-                                //do something
-                              },
-                              color: Colors.white,
-                              padding: EdgeInsets.only(right: 10, left: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.notification_important_rounded,
-                                    color: Colors.red,
+                              child: FlatButton(
+                                shape: Border(
+                                  left: BorderSide(color: color1, width: 5),
+                                  right: BorderSide(
+                                    width: .5,
+                                    color: grey4,
                                   ),
-                                  Text(
-                                    "Actions needed",
-                                    style: TextStyle(
-                                      color: Colors.grey.shade700,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                  top: BorderSide(
+                                    width: .5,
+                                    color: grey4,
+                                  ),
+                                  bottom: BorderSide(
+                                    width: .5,
+                                    color: grey4,
+                                  ),
+                                ),
+// shape: RoundedRectangleBorder(
+//   borderRadius: BorderRadius.circular(20.0),
+//   side: BorderSide(color: color1),
+// ),
+
+                                height: 70,
+                                minWidth: 80,
+                                onPressed: () => {
+                                  //do something
+                                },
+                                color: Colors.white,
+                                padding: EdgeInsets.only(right: 10, left: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.notification_important_rounded,
+                                      color: color1,
                                     ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
+                                    Text(
+                                      "Actions needed",
+                                      style: TextStyle(
+                                        color: grey7,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                             ),
                             FlatButton(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(color: Colors.grey.shade300),
+                              shape: Border(
+                                left: BorderSide(color: color2, width: 5),
+                                right: BorderSide(
+                                  width: .5,
+                                  color: grey4,
+                                ),
+                                top: BorderSide(
+                                  width: .5,
+                                  color: grey4,
+                                ),
+                                bottom: BorderSide(
+                                  width: .5,
+                                  color: grey4,
+                                ),
                               ),
                               height: 70,
-                              minWidth: 70,
+                              minWidth: 80,
                               onPressed: () => {
                                 //do something
                               },
@@ -193,12 +251,12 @@ class OpeningPage extends StatelessWidget {
                                 children: <Widget>[
                                   Icon(
                                     Icons.circle,
-                                    color: Colors.green,
+                                    color: color2,
                                   ),
                                   Text(
                                     "Circulars",
                                     style: TextStyle(
-                                      color: Colors.grey.shade700,
+                                      color: grey7,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                     ),
@@ -211,11 +269,23 @@ class OpeningPage extends StatelessWidget {
                               padding: EdgeInsets.only(left: 10),
                             ),
                             FlatButton(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(color: Colors.grey.shade300),
+                              shape: Border(
+                                left: BorderSide(color: color3, width: 5),
+                                right: BorderSide(
+                                  width: .5,
+                                  color: grey4,
+                                ),
+                                top: BorderSide(
+                                  width: .5,
+                                  color: grey4,
+                                ),
+                                bottom: BorderSide(
+                                  width: .5,
+                                  color: grey4,
+                                ),
                               ),
                               height: 70,
-                              minWidth: 70,
+                              minWidth: 80,
                               onPressed: () => {
                                 //do something
                               },
@@ -227,12 +297,12 @@ class OpeningPage extends StatelessWidget {
                                 children: <Widget>[
                                   Icon(
                                     Icons.announcement_rounded,
-                                    color: Colors.orange,
+                                    color: color3,
                                   ),
                                   Text(
                                     "Announcements",
                                     style: TextStyle(
-                                      color: Colors.grey.shade700,
+                                      color: grey7,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                     ),
@@ -245,11 +315,23 @@ class OpeningPage extends StatelessWidget {
                               padding: EdgeInsets.only(left: 10),
                             ),
                             FlatButton(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(color: Colors.grey.shade300),
+                              shape: Border(
+                                left: BorderSide(color: color4, width: 5),
+                                right: BorderSide(
+                                  width: .5,
+                                  color: grey4,
+                                ),
+                                top: BorderSide(
+                                  width: .5,
+                                  color: grey4,
+                                ),
+                                bottom: BorderSide(
+                                  width: .5,
+                                  color: grey4,
+                                ),
                               ),
                               height: 70,
-                              minWidth: 70,
+                              minWidth: 80,
                               onPressed: () => {
                                 //do something
                               },
@@ -261,12 +343,12 @@ class OpeningPage extends StatelessWidget {
                                 children: <Widget>[
                                   Icon(
                                     Icons.article_rounded,
-                                    color: Colors.grey,
+                                    color: color4,
                                   ),
                                   Text(
                                     "Notices",
                                     style: TextStyle(
-                                      color: Colors.grey.shade700,
+                                      color: grey7,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                     ),
@@ -334,7 +416,7 @@ class OpeningPage extends StatelessWidget {
                                           '21 December 2020',
                                           style: TextStyle(
                                             fontWeight: FontWeight.normal,
-                                            color: Colors.grey,
+                                            color: color4,
                                           ),
                                           // textAlign: TextAlign.left,
                                         ),
@@ -392,7 +474,7 @@ class OpeningPage extends StatelessWidget {
                                           '21 December 2020',
                                           style: TextStyle(
                                             fontWeight: FontWeight.normal,
-                                            color: Colors.grey,
+                                            color: color4,
                                           ),
                                           // textAlign: TextAlign.left,
                                         ),
@@ -450,7 +532,7 @@ class OpeningPage extends StatelessWidget {
                                           '21 December 2020',
                                           style: TextStyle(
                                             fontWeight: FontWeight.normal,
-                                            color: Colors.grey,
+                                            color: color4,
                                           ),
                                           // textAlign: TextAlign.left,
                                         ),
@@ -492,3 +574,5 @@ class OpeningPage extends StatelessWidget {
     );
   }
 }
+
+class $color1 {}
