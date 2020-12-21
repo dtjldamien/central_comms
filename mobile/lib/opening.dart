@@ -109,6 +109,7 @@ class OpeningPage extends StatelessWidget {
             )
           ],
         ),
+
         body: Align(
           alignment: Alignment.center,
           child: Column(
@@ -374,195 +375,192 @@ class OpeningPage extends StatelessWidget {
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  child: Scrollbar(
-                    isAlwaysShown: true,
-                    child: new ListView(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 10),
-                            ),
-                            FlatButton(
-                              onPressed: () {
-                                //do something
-                              },
-                              child: Container(
-                                height: 140,
-                                color: Colors.white,
-                                child: Row(
-                                  children: <Widget>[
-                                    Image.asset(
-                                      'assets/images/OHS.png',
-                                      width:
-                                          (MediaQuery.of(context).size.width -
-                                                  70) /
-                                              2,
-                                      height: 140,
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(right: 10)),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          '21 December 2020',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            color: color4,
+                  child: Container(
+                    height: (MediaQuery.of(context).size.height / 2 ) - 50,
+                    // margin: EdgeInsets.only(bottom: 20),
+
+                                      child: Scrollbar(
+                      isAlwaysShown: true,
+                      child: new ListView(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        padding: EdgeInsets.only(left: 20, right: 20),
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 10),
+                              ),
+                              FlatButton(
+                                onPressed: () {
+                      
+                                  //do something
+                                },
+                                child: Container(
+                                  height: 140,
+                                  color: Colors.white,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Image.asset(
+                                        'assets/images/OHS.png',
+                                        width:
+                                            (MediaQuery.of(context).size.width -
+                                                    70) /
+                                                2,
+                                        height: 140,
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(right: 10)),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            '21 December 2020',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: color4,
+                                            ),
+                                            // textAlign: TextAlign.left,
                                           ),
-                                          // textAlign: TextAlign.left,
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    2) -
-                                                52,
-                                            color: Colors.white,
-                                            child: Text(
-                                              'This is an important notice, please take note of it.',
-                                              softWrap: true,
-                                              style: TextStyle(
-                                                fontSize: 20,
+                                          Expanded(
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              width: (MediaQuery.of(context).size.width/2)-52,
+                                              color: Colors.white,
+                                              child: Text(
+                                                'This is an important notice, please take note of it.',
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(padding: EdgeInsets.only(bottom: 10)),
-                            FlatButton(
-                              onPressed: () {
-                                //do something
-                              },
-                              child: Container(
-                                height: 140,
-                                color: Colors.white,
-                                child: Row(
-                                  children: <Widget>[
-                                    Image.asset(
-                                      'assets/images/OHS.png',
-                                      width:
-                                          (MediaQuery.of(context).size.width -
-                                                  70) /
-                                              2,
-                                      height: 140,
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(right: 10)),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          '21 December 2020',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            color: color4,
+                              Padding(padding: EdgeInsets.only(bottom: 10)),
+                              FlatButton(
+                                onPressed: () {
+                                  //do something
+                                },
+                                child: Container(
+                                  height: 140,
+                                  color: Colors.white,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Image.asset(
+                                        'assets/images/OHS.png',
+                                        width:
+                                            (MediaQuery.of(context).size.width -
+                                                    70)/2,
+                                        height: 140,
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(right: 10)),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            '21 December 2020',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: color4,
+                                            ),
+                                            // textAlign: TextAlign.left,
                                           ),
-                                          // textAlign: TextAlign.left,
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    2) -
-                                                52,
-                                            color: Colors.white,
-                                            child: Text(
-                                              'This is an important notice, please take note of it.',
-                                              softWrap: true,
-                                              style: TextStyle(
-                                                fontSize: 20,
+                                          Expanded(
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              width: (MediaQuery.of(context).size.width/2)-52,
+                                              color: Colors.white,
+                                              child: Text(
+                                                'This is an important notice, please take note of it.',
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(padding: EdgeInsets.only(bottom: 10)),
-                            FlatButton(
-                              onPressed: () {
-                                //do something
-                              },
-                              child: Container(
-                                height: 140,
-                                color: Colors.white,
-                                child: Row(
-                                  children: <Widget>[
-                                    Image.asset(
-                                      'assets/images/OHS.png',
-                                      width:
-                                          (MediaQuery.of(context).size.width -
-                                                  70) /
-                                              2,
-                                      height: 140,
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(right: 10)),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          '21 December 2020',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            color: color4,
+                              Padding(padding: EdgeInsets.only(bottom: 10)),
+                              FlatButton(
+                                onPressed: () {
+                                  //do something
+                                },
+                                child: Container(
+                                  height: 140,
+                                  color: Colors.white,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Image.asset(
+                                        'assets/images/OHS.png',
+                                        width:
+                                            (MediaQuery.of(context).size.width -
+                                                    70) /
+                                                2,
+                                        height: 140,
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(right: 10)),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            '21 December 2020',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: color4,
+                                            ),
+                                            // textAlign: TextAlign.left,
                                           ),
-                                          // textAlign: TextAlign.left,
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    2) -
-                                                52,
-                                            color: Colors.white,
-                                            child: Text(
-                                              'This is an important notice, please take note of it.',
-                                              softWrap: true,
-                                              style: TextStyle(
-                                                fontSize: 20,
+                                          Expanded(
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              width: (MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2) -
+                                                  52,
+                                              color: Colors.white,
+                                              child: Text(
+                                                'This is an important notice, please take note of it.',
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -574,5 +572,3 @@ class OpeningPage extends StatelessWidget {
     );
   }
 }
-
-class $color1 {}
