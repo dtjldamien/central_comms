@@ -542,6 +542,15 @@ class AddFolder extends StatefulWidget {
 }
 
 class _AddFolder extends State<AddFolder> {
+  Color color;
+
+  @override
+  void initState() {
+    super.initState();
+
+    color = Colors.transparent;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -570,24 +579,125 @@ class _AddFolder extends State<AddFolder> {
                 child: Container(
                   width: MediaQuery.of(context).size.width - 90,
                   height: MediaQuery.of(context).size.width,
-                  color: color1,
                   child: Scrollbar(
                     child: ListView(
-                      scrollDirection: Axis.horizontal,
+                      scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       children: [
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Container(
-                              height: 20,
                               width: MediaQuery.of(context).size.width - 180,
-                              child: Text(
-                                'Office of Finance',
+                                decoration: BoxDecoration(
+                                  color: color,
+                                  border: Border.all(color: grey4)
+                                ),
+                              child: ListTile(     
+                                title: Text('Office of Finance', style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),),
+                              
+                                onTap: () {
+                                  setState(() {
+                                    color = Colors.lightBlueAccent;
+                                  });
+                                },
                               ),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.blueAccent, width: 2),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              color: color,
+                              child: ListTile( 
+                                    
+                                subtitle: Text('Circulars'),
+                                onTap: () {
+                                  setState(() {
+                                    color = Colors.lightBlueAccent;
+                                  });
+                                },
+                              ),
+                            ),
+                                                        Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              color: color,
+                              child: ListTile(     
+                                
+                                subtitle: Text('Notices'),
+                                onTap: () {
+                                  setState(() {
+                                    color = Colors.lightBlueAccent;
+                                  });
+                                },
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              color: color,
+                              child: ListTile(     
+                                
+                                subtitle: Text('Announcements'),
+                                onTap: () {
+                                  setState(() {
+                                    color = Colors.lightBlueAccent;
+                                  });
+                                },
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              color: color,
+                              child: ListTile(     
+                                title: Text('Office of Student Affair', style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),),
+                              
+                                onTap: () {
+                                  setState(() {
+                                    color = Colors.lightBlueAccent;
+                                  });
+                                },
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              color: color,
+                              child: ListTile( 
+                                    
+                                subtitle: Text('Circulars'),
+                                onTap: () {
+                                  setState(() {
+                                    color = Colors.lightBlueAccent;
+                                  });
+                                },
+                              ),
+                            ),
+                                                        Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              color: color,
+                              child: ListTile(     
+                                
+                                subtitle: Text('Notices'),
+                                onTap: () {
+                                  setState(() {
+                                    color = Colors.lightBlueAccent;
+                                  });
+                                },
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              color: color,
+                              child: ListTile(     
+                                
+                                subtitle: Text('Announcements'),
+                                onTap: () {
+                                  setState(() {
+                                    color = Colors.lightBlueAccent;
+                                  });
+                                },
                               ),
                             ),
                           ],
