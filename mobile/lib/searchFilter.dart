@@ -73,18 +73,17 @@ class _searchFilterState extends State<searchFilter> {
                 shrinkWrap: true,
                 itemCount: words.length,
                 itemBuilder: (context, index) {
-                  if (editingController.text.isEmpty) {
-                    // search bar is empty
+                  if (editingController.text.isEmpty) { // search bar is empty
                     return widget1(words, index);
                   } else if (words[
-                              index] // something in being typed in search bar
+                              index] 
                           .word1
                           .toLowerCase()
                           .contains(editingController.text) ||
                       words[index]
                           .word2
                           .toLowerCase()
-                          .contains(editingController.text)) {
+                          .contains(editingController.text)) { // something in being typed in search bar
                     return widget1(words, index);
                   } else {
                     return Container(); // return nothing
