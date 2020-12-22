@@ -5,8 +5,6 @@ import 'package:central_comms/addFolder.dart';
 import 'package:central_comms/folderList.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 final Color color1 = Colors.red;
 final Color color2 = Colors.green;
 final Color color3 = Colors.orange;
