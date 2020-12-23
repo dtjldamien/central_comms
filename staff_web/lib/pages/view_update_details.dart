@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CreateUpdatePage extends StatefulWidget {
+class ViewUpdateDetailsPage extends StatefulWidget {
   @override
-  _CreateUpdatePageState createState() => _CreateUpdatePageState();
+  _ViewUpdateDetailsPageState createState() => _ViewUpdateDetailsPageState();
 }
 
-class _CreateUpdatePageState extends State<CreateUpdatePage> {
-  String dropdownUpdateType = 'Important';
-  String dropdownFollowUpType = 'Acknowledgement';
-  DateTime scheduledDate = DateTime.now();
-  TimeOfDay scheduledTime = TimeOfDay(hour: 09, minute: 00);
-
+class _ViewUpdateDetailsPageState extends State<ViewUpdateDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,18 +29,14 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                     height: 50,
                     child: const Center(child: Text('View All Notifications')),
                   ),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/viewAllUpdates');
-                  },
+                  onTap: () {},
                 ),
                 InkWell(
                   child: Container(
                     height: 50,
                     child: const Center(child: Text('Notifications Archive')),
                   ),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/viewUpdateDetails');
-                  },
+                  onTap: () {},
                 ),
                 InkWell(
                   child: Container(
@@ -71,7 +62,7 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Update placeholder',
+                  'View Notification Details',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32.0),
                 ),
                 Row(children: <Widget>[
@@ -103,9 +94,10 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
                                 child: TextField(
+                                  enabled: false,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    labelText: 'Update Title',
+                                    labelText: 'Update XYZ',
                                   ),
                                 ),
                               ),
@@ -144,6 +136,7 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
                                 child: TextField(
+                                  enabled: false,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'Update Recipients',
@@ -153,31 +146,12 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                               Container(
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
-                                child: DropdownButton<String>(
-                                  value: dropdownUpdateType,
-                                  icon: Icon(Icons.arrow_downward),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  underline: Container(
-                                    height: 2,
+                                child: TextField(
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Announcements',
                                   ),
-                                  onChanged: (String newValue) {
-                                    setState(() {
-                                      dropdownUpdateType = newValue;
-                                    });
-                                  },
-                                  items: <String>[
-                                    'Important',
-                                    'Announcements',
-                                    'Notices',
-                                    'Circulars'
-                                  ].map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
                                 ),
                               ),
                             ],
@@ -204,26 +178,22 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
                                 child: TextField(
+                                  enabled: false,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    labelText: 'Message',
+                                    labelText: 'Message content',
                                   ),
                                 ),
                               ),
                               Container(
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
-                                child: Column(
-                                  children: [
-                                    // CalendarDatePicker(
-                                    //   firstDate: DateTime(2020),
-                                    //   initialDate: scheduledDate,
-                                    //   lastDate: DateTime(2100),
-                                    //   onDateChanged: (DateTime value) {
-                                    //     scheduledDate = value;
-                                    //   },
-                                    // ),
-                                  ],
+                                child: TextField(
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Sent on ',
+                                  ),
                                 ),
                               ),
                             ],
@@ -240,7 +210,7 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                               Container(
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
-                                child: Text('Follow up action type'),
+                                child: Text('Open Rate'),
                               ),
                             ],
                           ),
@@ -252,40 +222,22 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
                                 child: TextField(
+                                  enabled: false,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    labelText: 'Upload Cover Image here',
+                                    labelText: 'Cover Image here',
                                   ),
                                 ),
                               ),
                               Container(
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
-                                child: DropdownButton<String>(
-                                  value: dropdownFollowUpType,
-                                  icon: Icon(Icons.arrow_downward),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  underline: Container(
-                                    height: 2,
+                                child: TextField(
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Open Rate here',
                                   ),
-                                  onChanged: (String newValue) {
-                                    setState(() {
-                                      dropdownFollowUpType = newValue;
-                                    });
-                                  },
-                                  items: <String>[
-                                    'Acknowledgement',
-                                    'Files',
-                                    'Links',
-                                    'Reminders'
-                                  ].map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
                                 ),
                               ),
                             ],
@@ -302,7 +254,7 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                               Container(
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
-                                child: Text('Follow up content'),
+                                child: Text('Follow up action rate'),
                               ),
                             ],
                           ),
@@ -314,9 +266,10 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
                                 child: TextField(
+                                  enabled: false,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    labelText: 'Summary',
+                                    labelText: 'Summary content',
                                   ),
                                 ),
                               ),
@@ -327,7 +280,7 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                                   enabled: false,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    labelText: 'Set Follow Up Content',
+                                    labelText: 'Open Rate here',
                                   ),
                                 ),
                               ),
@@ -340,7 +293,7 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                               Container(
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
-                                child: Text('Tags'),
+                                child: Text('Average Time spent reading'),
                               ),
                               Container(
                                 padding: const EdgeInsets.all(8.0),
@@ -356,9 +309,10 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
                                 child: TextField(
+                                  enabled: false,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    labelText: 'Tags',
+                                    labelText: '42 seconds',
                                   ),
                                 ),
                               ),
@@ -372,11 +326,7 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                                   children: [
                                     TextButton(
                                       onPressed: () async {},
-                                      child: Text('Preview Update'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () async {},
-                                      child: Text('Create Update'),
+                                      child: Text('Resend'),
                                     ),
                                   ],
                                 ),
