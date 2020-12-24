@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:quill_delta/quill_delta.dart';
+import 'package:zefyr/zefyr.dart';
 
 class CreateUpdatePage extends StatefulWidget {
   @override
@@ -8,8 +12,22 @@ class CreateUpdatePage extends StatefulWidget {
 class _CreateUpdatePageState extends State<CreateUpdatePage> {
   String dropdownUpdateType = 'Important';
   String dropdownFollowUpType = 'Acknowledgement';
-  DateTime scheduledDate = DateTime.now();
-  TimeOfDay scheduledTime = TimeOfDay(hour: 09, minute: 00);
+  final format = DateFormat("dd MMMM yyyy HH:mm");
+
+  /// Allows to control the editor and the document.
+  ZefyrController _controller;
+
+  /// Zefyr editor like any other input field requires a focus node.
+  FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    // Here we must load the document and pass it to Zefyr controller.
+    final document = _loadDocument();
+    _controller = ZefyrController(document);
+    _focusNode = FocusNode();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -201,6 +219,13 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
+                                // child: ZefyrScaffold(
+                                //   child: ZefyrEditor(
+                                //     padding: EdgeInsets.all(16),
+                                //     controller: _controller,
+                                //     focusNode: _focusNode,
+                                //   ),
+                                // ),
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
                                 child: TextField(
@@ -214,15 +239,30 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
                                 child: Column(
-                                  children: [
-                                    // CalendarDatePicker(
-                                    //   firstDate: DateTime(2020),
-                                    //   initialDate: scheduledDate,
-                                    //   lastDate: DateTime(2100),
-                                    //   onDateChanged: (DateTime value) {
-                                    //     scheduledDate = value;
-                                    //   },
-                                    // ),
+                                  children: <Widget>[
+                                    DateTimeField(
+                                      format: format,
+                                      onShowPicker:
+                                          (context, currentValue) async {
+                                        final date = await showDatePicker(
+                                            context: context,
+                                            firstDate: DateTime(2020),
+                                            initialDate:
+                                                currentValue ?? DateTime.now(),
+                                            lastDate: DateTime(2030));
+                                        if (date != null) {
+                                          final time = await showTimePicker(
+                                            context: context,
+                                            initialTime: TimeOfDay.fromDateTime(
+                                                currentValue ?? DateTime.now()),
+                                          );
+                                          return DateTimeField.combine(
+                                              date, time);
+                                        } else {
+                                          return currentValue;
+                                        }
+                                      },
+                                    ),
                                   ],
                                 ),
                               ),
@@ -324,7 +364,6 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 width: MediaQuery.of(context).size.width * 0.35,
                                 child: TextField(
-                                  enabled: false,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'Set Follow Up Content',
@@ -394,5 +433,13 @@ class _CreateUpdatePageState extends State<CreateUpdatePage> {
         ],
       ),
     );
+  }
+
+  NotusDocument _loadDocument() {
+    // For simplicity we hardcode a simple document with one line of text
+    // saying "Zefyr Quick Start".
+    // (Note that delta must always end with newline.)
+    final Delta delta = Delta()..insert("Zefyr Quick Start\n");
+    return NotusDocument.fromDelta(delta);
   }
 }
