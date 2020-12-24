@@ -1,7 +1,7 @@
 import 'package:central_comms/main.dart';
 import 'package:flutter/material.dart';
 import 'package:central_comms/searchFilter.dart';
-import 'package:central_comms/addFolder.dart';
+import 'package:central_comms/addButton.dart';
 import 'package:central_comms/folderList.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -38,17 +38,6 @@ class OpeningPage extends StatelessWidget {
           ),
           backgroundColor: Colors.white,
           actions: <Widget>[
-            IconButton(
-              padding: EdgeInsets.only(right: 20),
-              icon: Icon(
-                Icons.delete_rounded,
-                size: 30,
-                color: color4,
-              ),
-              onPressed: () {
-//do something
-              },
-            ),
             IconButton(
               padding: EdgeInsets.only(right: 20),
               icon: Icon(
@@ -89,7 +78,7 @@ class OpeningPage extends StatelessWidget {
             
               Container(
                 height: 70,
-                child: defaultFolders(),
+                child: DefaultFolders(),
               ),
 
               Expanded(child: searchFilter(),),
