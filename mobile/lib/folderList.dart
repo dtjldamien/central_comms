@@ -15,7 +15,7 @@ class DefaultFolders extends StatefulWidget {
 }
 
 class _DefaultFolders extends State<DefaultFolders> {
-  var duplicateItems = List<String>.generate(10000, (i) => "Item $i");
+  // var duplicateItems = List<String>.generate(10000, (i) => "Item $i");
   // var items = List<String>();
 
   List<MyClass> words = [

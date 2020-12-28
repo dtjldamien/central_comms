@@ -8,7 +8,7 @@ class AddFolder extends StatefulWidget {
 }
 
 class _AddFolder extends State<AddFolder> {
-  final test = DefaultFolders();
+  // final test = DefaultFolders();
   TextEditingController folderNameController = new TextEditingController();
   Color color;
   int isTapped;
