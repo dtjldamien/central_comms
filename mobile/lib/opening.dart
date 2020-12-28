@@ -141,11 +141,10 @@ class _OpeningPage extends State<OpeningPage> {
                                   alignment: FractionalOffset.center,
                                   child: FlatButton(
                                     onPressed: () {
-                 
                                       addFoldersToList(
                                           folderNameController.text);
+                                      Navigator.pop(context);
                                     },
-                                    
                                     color: Colors.amber,
                                     minWidth:
                                         MediaQuery.of(context).size.width / 3,
