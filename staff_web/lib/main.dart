@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:staff_web/pages/create_update.dart';
 import 'package:staff_web/pages/view_all_updates.dart';
 import 'package:staff_web/pages/view_update_details.dart';
+import 'package:staff_web/components/editor.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         // key value pairs
         '/viewAllUpdates': (context) => ViewAllUpdatesPage(),
         '/viewUpdateDetails': (context) => ViewUpdateDetailsPage(),
+        '/editor': (context) => EditorPage(),
       },
     );
   }
