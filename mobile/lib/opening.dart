@@ -28,6 +28,8 @@ class OpeningPage extends StatefulWidget {
 }
 
 class _OpeningPage extends State<OpeningPage> {
+  bool colour1Pressed = false;
+  Color _button1color = Colors.transparent;
   TextEditingController folderNameController = new TextEditingController();
 
   List<MyClass> words = [
@@ -104,7 +106,7 @@ class _OpeningPage extends State<OpeningPage> {
                 // do something
                 showDialog(
                   context: context,
-                  builder: (_) => new Dialog(
+                  builder: (context) => new Dialog(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     elevation: 16,
@@ -137,14 +139,44 @@ class _OpeningPage extends State<OpeningPage> {
                           Center(
                             child: Padding(
                               padding: EdgeInsets.all(20),
-                              child: Text('Folder theme',
-                              style: TextStyle(
-                                color: Colors.grey.shade700,
-                                fontWeight: FontWeight.bold,
+                              child: Text(
+                                'Color theme',
+                                style: TextStyle(
+                                  color: Colors.grey.shade700,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                              ),
-                              
-                              ),
+                            ),
+                          ),
+
+                          Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                MaterialButton(
+                                  child: Icon(
+                                    Icons.done_rounded,
+                                    size: 40,
+                                    color: _button1color,
+                                  ),
+                                  shape: CircleBorder(),
+                                  color: Colors.red,
+                                  height: 60,
+                                  onPressed: () {
+                                    setState(() {
+                                      // _button1color = Colors.white;
+                                      colour1Pressed = !colour1Pressed;
+                                      if (colour1Pressed) {
+                                        _button1color = Colors.white;
+                                      } else {
+                                        _button1color = Colors.transparent;
+                                      }
+                                    });
+                                    print(_button1color);
+                                  },
+                                )
+                              ],
+                            ),
                           ),
 
                           Center(
