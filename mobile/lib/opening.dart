@@ -135,25 +135,44 @@ class _OpeningPage extends State<OpeningPage> {
                           ),
 
                           Center(
-                            child: Column(
-                              children: <Widget>[
-                                Align(
-                                  alignment: FractionalOffset.center,
-                                  child: FlatButton(
-                                    onPressed: () {
-                                      addFoldersToList(
-                                          folderNameController.text);
-                                      Navigator.pop(context);
-                                    },
-                                    color: Colors.amber,
-                                    minWidth:
-                                        MediaQuery.of(context).size.width / 3,
-                                    child: Text(
-                                      'Done',
+                            child: Padding(
+                              padding: EdgeInsets.all(20),
+                              child: Text('Folder theme',
+                              style: TextStyle(
+                                color: Colors.grey.shade700,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              ),
+                              
+                              ),
+                          ),
+
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.all(20),
+                              child: Column(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: FractionalOffset.center,
+                                    child: FlatButton(
+                                      onPressed: () {
+                                        if (folderNameController
+                                            .text.isNotEmpty) {
+                                          addFoldersToList(
+                                              folderNameController.text);
+                                        }
+                                        Navigator.pop(context);
+                                      },
+                                      color: Colors.amber,
+                                      minWidth:
+                                          MediaQuery.of(context).size.width / 3,
+                                      child: Text(
+                                        'Done',
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
