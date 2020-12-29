@@ -9,7 +9,7 @@ final Color color3 = Colors.orange;
 final Color color4 = Colors.grey;
 final Color color5 = Colors.black;
 final Color color6 = Colors.blue;
-final Color color7 = Colors.pink;
+final Color color7 = Colors.pink[200];
 final Color color8 = Colors.purple;
 final Color grey4 = Colors.grey.shade400;
 final Color grey7 = Colors.grey.shade700;
@@ -29,7 +29,15 @@ class OpeningPage extends StatefulWidget {
 
 class _OpeningPage extends State<OpeningPage> {
   bool colour1Pressed = false;
-  Color _button1color = Colors.transparent;
+  bool colour2Pressed = false;
+  bool colour3Pressed = false;
+  bool colour4Pressed = false;
+  bool colour5Pressed = false;
+  bool colour6Pressed = false;
+  bool colour7Pressed = false;
+  bool colour8Pressed = false;
+  Color folderColor;
+
   TextEditingController folderNameController = new TextEditingController();
 
   List<MyClass> words = [
@@ -55,13 +63,13 @@ class _OpeningPage extends State<OpeningPage> {
     ),
   ];
 
-  void addFoldersToList(String newFolderName) {
+  void addFoldersToList(String newFolderName, Color folderColor) {
     setState(() {
       words.add(MyClass(
         newFolderName,
-        Icons.announcement_rounded,
-        Colors.orange,
-      )); // temporary icon and color
+        Icons.file_download,
+        folderColor,
+      )); // temporary icon
     });
   }
 
@@ -103,114 +111,293 @@ class _OpeningPage extends State<OpeningPage> {
                 color: color4,
               ),
               onPressed: () {
-                // do something
                 showDialog(
                   context: context,
-                  builder: (context) => new Dialog(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    elevation: 16,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height - 100,
-                      width: MediaQuery.of(context).size.width - 40,
-                      child: Column(
-                        children: <Widget>[
-                          // Padding(padding: EdgeInsets.only(top: 20)),
-                          Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(20),
-                              child: TextField(
-                                controller: folderNameController,
-                                // obscureText: true,
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.teal),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  hintText: 'Please enter a folder name',
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(20),
-                              child: Text(
-                                'Color theme',
-                                style: TextStyle(
-                                  color: Colors.grey.shade700,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  builder: (context) {
+                    // String contentText = "Content of Dialog";
+                    return StatefulBuilder(
+                      builder: (context, setState) {
+                        return AlertDialog(
+                          content: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: ListBody(
                               children: <Widget>[
-                                MaterialButton(
-                                  child: Icon(
-                                    Icons.done_rounded,
-                                    size: 40,
-                                    color: _button1color,
+                                Center(
+                                  child: TextField(
+                                    controller: folderNameController,
+                                    // obscureText: true,
+                                    textAlign: TextAlign.center,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.teal),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                      ),
+                                      hintText: 'Please enter a folder name',
+                                      hintStyle: TextStyle(color: Colors.grey),
+                                    ),
                                   ),
-                                  shape: CircleBorder(),
-                                  color: Colors.red,
-                                  height: 60,
-                                  onPressed: () {
-                                    setState(() {
-                                      // _button1color = Colors.white;
-                                      colour1Pressed = !colour1Pressed;
-                                      if (colour1Pressed) {
-                                        _button1color = Colors.white;
-                                      } else {
-                                        _button1color = Colors.transparent;
-                                      }
-                                    });
-                                    print(_button1color);
-                                  },
-                                )
-                              ],
-                            ),
-                          ),
-
-                          Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(20),
-                              child: Column(
-                                children: <Widget>[
-                                  Align(
-                                    alignment: FractionalOffset.center,
-                                    child: FlatButton(
-                                      onPressed: () {
-                                        if (folderNameController
-                                            .text.isNotEmpty) {
-                                          addFoldersToList(
-                                              folderNameController.text);
-                                        }
-                                        Navigator.pop(context);
-                                      },
-                                      color: Colors.amber,
-                                      minWidth:
-                                          MediaQuery.of(context).size.width / 3,
-                                      child: Text(
-                                        'Done',
+                                ),
+                                Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 20,
+                                      bottom: 20,
+                                    ),
+                                    child: Text(
+                                      'Color theme',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade700,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: <Widget>[
+                                      MaterialButton(
+                                        child: Icon(
+                                          Icons.done_rounded,
+                                          size: 30,
+                                          color: colour1Pressed
+                                              ? Colors.white
+                                              : Colors.transparent,
+                                        ),
+                                        shape: CircleBorder(),
+                                        color: color1,
+                                        height: 50,
+                                        onPressed: () {
+                                          setState(() {
+                                            if (!(colour2Pressed ||
+                                                colour3Pressed ||
+                                                colour4Pressed ||
+                                                colour5Pressed ||
+                                                colour6Pressed ||
+                                                colour7Pressed ||
+                                                colour8Pressed)) {
+                                              colour1Pressed = !colour1Pressed;
+                                              folderColor = color1;
+                                              // print(folderColor);
+                                            } else {
+                                              folderColor = null;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      MaterialButton(
+                                        child: Icon(
+                                          Icons.done_rounded,
+                                          size: 30,
+                                          color: colour2Pressed
+                                              ? Colors.white
+                                              : Colors.transparent,
+                                        ),
+                                        shape: CircleBorder(),
+                                        color: color2,
+                                        height: 50,
+                                        onPressed: () {
+                                          setState(() {
+                                            if (!(colour1Pressed ||
+                                                colour3Pressed ||
+                                                colour4Pressed ||
+                                                colour5Pressed ||
+                                                colour6Pressed ||
+                                                colour7Pressed ||
+                                                colour8Pressed)) {
+                                              colour2Pressed = !colour2Pressed;
+                                              folderColor = color2;
+                                              // print(folderColor);
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      MaterialButton(
+                                        child: Icon(
+                                          Icons.done_rounded,
+                                          size: 30,
+                                          color: colour3Pressed
+                                              ? Colors.white
+                                              : Colors.transparent,
+                                        ),
+                                        shape: CircleBorder(),
+                                        color: color3,
+                                        height: 50,
+                                        onPressed: () {
+                                          setState(() {
+                                            if (!(colour1Pressed ||
+                                                colour2Pressed ||
+                                                colour4Pressed ||
+                                                colour5Pressed ||
+                                                colour6Pressed ||
+                                                colour7Pressed ||
+                                                colour8Pressed)) {
+                                              colour3Pressed = !colour3Pressed;
+                                              folderColor = color3;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      MaterialButton(
+                                        child: Icon(
+                                          Icons.done_rounded,
+                                          size: 30,
+                                          color: colour4Pressed
+                                              ? Colors.white
+                                              : Colors.transparent,
+                                        ),
+                                        shape: CircleBorder(),
+                                        color: color4,
+                                        height: 50,
+                                        onPressed: () {
+                                          setState(() {
+                                            if (!(colour1Pressed ||
+                                                colour3Pressed ||
+                                                colour2Pressed ||
+                                                colour5Pressed ||
+                                                colour6Pressed ||
+                                                colour7Pressed ||
+                                                colour8Pressed)) {
+                                              colour4Pressed = !colour4Pressed;
+                                              folderColor = color4;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      MaterialButton(
+                                        child: Icon(
+                                          Icons.done_rounded,
+                                          size: 30,
+                                          color: colour5Pressed
+                                              ? Colors.white
+                                              : Colors.transparent,
+                                        ),
+                                        shape: CircleBorder(),
+                                        color: color5,
+                                        height: 50,
+                                        onPressed: () {
+                                          setState(() {
+                                            if (!(colour2Pressed ||
+                                                colour3Pressed ||
+                                                colour4Pressed ||
+                                                colour1Pressed ||
+                                                colour6Pressed ||
+                                                colour7Pressed ||
+                                                colour8Pressed)) {
+                                              colour5Pressed = !colour5Pressed;
+                                              folderColor = color5;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      MaterialButton(
+                                        child: Icon(
+                                          Icons.done_rounded,
+                                          size: 30,
+                                          color: colour6Pressed
+                                              ? Colors.white
+                                              : Colors.transparent,
+                                        ),
+                                        shape: CircleBorder(),
+                                        color: color6,
+                                        height: 50,
+                                        onPressed: () {
+                                          setState(() {
+                                            if (!(colour2Pressed ||
+                                                colour3Pressed ||
+                                                colour4Pressed ||
+                                                colour5Pressed ||
+                                                colour1Pressed ||
+                                                colour7Pressed ||
+                                                colour8Pressed)) {
+                                              colour6Pressed = !colour6Pressed;
+                                              folderColor = color6;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      MaterialButton(
+                                        child: Icon(
+                                          Icons.done_rounded,
+                                          size: 30,
+                                          color: colour7Pressed
+                                              ? Colors.white
+                                              : Colors.transparent,
+                                        ),
+                                        shape: CircleBorder(),
+                                        color: color7,
+                                        height: 50,
+                                        onPressed: () {
+                                          setState(() {
+                                            if (!(colour2Pressed ||
+                                                colour3Pressed ||
+                                                colour4Pressed ||
+                                                colour5Pressed ||
+                                                colour6Pressed ||
+                                                colour1Pressed ||
+                                                colour8Pressed)) {
+                                              colour7Pressed = !colour7Pressed;
+                                              folderColor = color7;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      MaterialButton(
+                                        child: Icon(
+                                          Icons.done_rounded,
+                                          size: 30,
+                                          color: colour8Pressed
+                                              ? Colors.white
+                                              : Colors.transparent,
+                                        ),
+                                        shape: CircleBorder(),
+                                        color: color8,
+                                        height: 50,
+                                        onPressed: () {
+                                          setState(() {
+                                            if (!(colour2Pressed ||
+                                                colour3Pressed ||
+                                                colour4Pressed ||
+                                                colour5Pressed ||
+                                                colour6Pressed ||
+                                                colour7Pressed ||
+                                                colour1Pressed)) {
+                                              colour8Pressed = !colour8Pressed;
+                                              folderColor = color8;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                if (folderNameController.text.isNotEmpty &&
+                                    folderColor != null) {
+                                  addFoldersToList(
+                                      folderNameController.text, folderColor);
+                                }
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                'Done',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                 );
               },
             )
@@ -257,7 +444,6 @@ class _OpeningPage extends State<OpeningPage> {
                                 color: Colors.grey.shade300,
                               ),
                             ),
-                            // onPressed: () => addFoldersToList('test'),
                             onPressed: () {
                               //do something
                             },
@@ -304,6 +490,25 @@ class _OpeningPage extends State<OpeningPage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+//see if want to keep
+class WarningAlert extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text("Only one color allowed"),
+      // content: Text("Please upload the image"),
+      actions: <Widget>[
+        FlatButton(
+          child: Text("Ok"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        )
+      ],
     );
   }
 }

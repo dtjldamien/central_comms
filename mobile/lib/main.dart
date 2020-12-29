@@ -64,7 +64,7 @@ class MyWidget extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Container(
                         color: Colors.white,
@@ -81,40 +81,40 @@ class MyWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // Container(
-                      //   color: Colors.white,
-                      //   height: 40.0,
-                      //   child: RaisedButton(
-                      //     onPressed: () => {
-                      //       //do something
-                      //     },
-                      //     color: Colors.redAccent,
-                      //     child: RichText(
-                      //       textAlign: TextAlign.center,
-                      //       text: TextSpan(
-                      //         children: [
-                      //           TextSpan(
-                      //             text: 'Notifications On',
-                      //             style: TextStyle(
-                      //                 color: Colors.white,
-                      //                 fontSize: 13,
-                      //                 fontWeight: FontWeight.bold),
-                      //           ),
-                      //           WidgetSpan(
-                      //             child: Padding(
-                      //               padding: const EdgeInsets.symmetric(
-                      //                   horizontal: 2.0),
-                      //               child: Icon(
-                      //                 Icons.lock,
-                      //                 color: Colors.white,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
+                      Container(
+                        color: Colors.white,
+                        height: 40.0,
+                        child: RaisedButton(
+                          onPressed: () => {
+                            //do something
+                          },
+                          color: Colors.redAccent,
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Notifications On',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                WidgetSpan(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 2.0),
+                                    child: Icon(
+                                      Icons.lock,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   Padding(padding: EdgeInsets.only(top: 10)),
