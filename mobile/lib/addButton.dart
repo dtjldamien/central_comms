@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:central_comms/folderList.dart';
 import "folderList.dart";
 
-GlobalKey<_AddFolder> _myKey = GlobalKey();
-
 class AddFolder extends StatefulWidget {
   @override
   _AddFolder createState() => _AddFolder();
 }
 
 class _AddFolder extends State<AddFolder> {
-  final test = DefaultFolders();
+  // final test = DefaultFolders();
   TextEditingController folderNameController = new TextEditingController();
   Color color;
   int isTapped;
@@ -45,7 +43,7 @@ class _AddFolder extends State<AddFolder> {
                       borderSide: BorderSide(color: Colors.teal),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    hintText: 'Please enter your folder name',
+                    hintText: 'Please enter a folder name',
                     hintStyle: TextStyle(color: Colors.grey),
                   ),
                 ),
@@ -194,22 +192,23 @@ class _AddFolder extends State<AddFolder> {
                   Align(
                     alignment: FractionalOffset.center,
                     child: FlatButton(
-                      onPressed: () {
-                        //do something
-                        //  Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => addFolder(newFolderName: folderNameController.text)),
-                        // );
+                      // onPressed: () {
+                      //   //do something
+                      //   //  Navigator.push(
+                      //   //   context,
+                      //   //   MaterialPageRoute(builder: (context) => addFolder(newFolderName: folderNameController.text)),
+                      //   // );
 
-                        // _DefaultFolders.createState().addFoldersToList(folderNameController.text);
-                        //                   test.createState().words.add(MyClass(
-                        //   folderNameController.text,
-                        //   Icons.announcement_rounded,
-                        //   Colors.orange,
-                        // ) );
-                        print(folderNameController.text);
-                        
-                      },
+                      //   // _DefaultFolders.createState().addFoldersToList(folderNameController.text);
+                      //   //                   test.createState().words.add(MyClass(
+                      //   //   folderNameController.text,
+                      //   //   Icons.announcement_rounded,
+                      //   //   Colors.orange,
+                      //   // ) );
+                      //   // print(folderNameController.text);
+                      //   DefaultFolders().addNewFolder(folderNameController.text);
+                      // },
+                      onPressed: () => DefaultFolders().addNewFolder(folderNameController.text),
                       color: Colors.amber,
                       minWidth: MediaQuery.of(context).size.width / 3,
                       child: Text(

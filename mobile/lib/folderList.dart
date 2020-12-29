@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:central_comms/addButton.dart';
-
 
 class MyClass {
   String folderName;
@@ -10,12 +8,14 @@ class MyClass {
 }
 
 class DefaultFolders extends StatefulWidget {
+  addNewFolder(name) => createState().addFoldersToList(name);
+
   @override
   _DefaultFolders createState() => _DefaultFolders();
 }
 
 class _DefaultFolders extends State<DefaultFolders> {
-  var duplicateItems = List<String>.generate(10000, (i) => "Item $i");
+  // var duplicateItems = List<String>.generate(10000, (i) => "Item $i");
   // var items = List<String>();
 
   List<MyClass> words = [
@@ -40,6 +40,18 @@ class _DefaultFolders extends State<DefaultFolders> {
       Colors.grey,
     ),
   ];
+
+  void addFoldersToList(String newFolderName) {
+    print("added $newFolderName");
+    print(words.length);
+    setState(() {
+      words.add(MyClass(
+        newFolderName,
+        Icons.announcement_rounded,
+        Colors.orange,
+      )); // temporary icon and color
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +85,10 @@ class _DefaultFolders extends State<DefaultFolders> {
                     color: Colors.grey.shade300,
                   ),
                 ),
-                onPressed: () => addFoldersToList('test'),
+                // onPressed: () => addFoldersToList('test'),
+                onPressed: () {
+                  //do something
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -110,31 +125,4 @@ class _DefaultFolders extends State<DefaultFolders> {
       ),
     );
   }
-
-  void addFoldersToList(String newFolderName) {
-    setState(() {
-      words.add(MyClass(
-        newFolderName,
-        Icons.announcement_rounded,
-        Colors.orange,
-      )); // temporary icon and color
-    });
-  }
 }
-
-// class addFolder extends StatefulWidget {
-//   final newFolderName;
-//   addFolder({Key key, this.newFolderName}) : super(key: key);
-
-//   @override
-//   _addFolder createState() => _addFolder();
-// }
-
-// class _addFolder extends State<addFolder> {
-//   @override
-//   Widget build(BuildContext context) {
-//     print(widget.newFolderName);
-//     defaultFolders.addFoldersToList();
-//     return Container();
-//   }
-// }
