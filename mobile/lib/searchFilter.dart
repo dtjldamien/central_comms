@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 
 class MyClass {
-  String word1;
-  String word2;
-  String image;
-  MyClass(this.word1, this.word2);
+  String date;
+  String description;
+  // String image;
+  MyClass(this.date, this.description);
 }
 
-class searchFilter extends StatefulWidget {
-  searchFilter({Key key, this.title}) : super(key: key);
-  final String title;
+class SearchFilter extends StatefulWidget {
+  // searchFilter({Key ? key, this.title}) : super(key: key);
+  // searchFilter({ Key? key}) : super(key: key);
+  // final String title;
 
   @override
-  _searchFilterState createState() => new _searchFilterState();
+  _SearchFilterState createState() => new _SearchFilterState();
 }
 
-class _searchFilterState extends State<searchFilter> {
+class _SearchFilterState extends State<SearchFilter> {
   TextEditingController editingController = TextEditingController();
 
   final duplicateItems = List<String>.generate(10000, (i) => "Item $i");
-  var items = List<String>();
+  // var items = List<String>();
 
   List<MyClass> words = [
     MyClass(
@@ -77,11 +78,11 @@ class _searchFilterState extends State<searchFilter> {
                     return widget1(words, index);
                   } else if (words[
                               index] 
-                          .word1
+                          .date
                           .toLowerCase()
                           .contains(editingController.text) ||
                       words[index]
-                          .word2
+                          .description
                           .toLowerCase()
                           .contains(editingController.text)) { // something in being typed in search bar
                     return widget1(words, index);
@@ -104,7 +105,7 @@ Widget widget1(List<MyClass> words, int index) {
     child: Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.grey[300],
+          color: Colors.grey.shade300,
         ),
       ),
       child: ListTile(
@@ -113,19 +114,20 @@ Widget widget1(List<MyClass> words, int index) {
           children: <Widget>[
             CircleAvatar(
               radius: 25,
-              backgroundImage: AssetImage('...'),
+              // backgroundImage: AssetImage('...'),
+              backgroundColor: Colors.amber,
             ),
           ],
         ),
         title: Text(
-          '${words[index].word1}',
+          '${words[index].date}',
           style: TextStyle(
             fontWeight: FontWeight.normal,
             color: Colors.grey.shade700,
           ),
         ),
         subtitle: Text(
-          '${words[index].word2}',
+          '${words[index].description}',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,

@@ -266,7 +266,7 @@ class _OpeningPage extends State<OpeningPage> {
                 ),
               ),
               Expanded(
-                child: searchFilter(),
+                child: SearchFilter(),
               ),
             ],
           ),

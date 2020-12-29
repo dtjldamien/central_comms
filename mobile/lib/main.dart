@@ -50,13 +50,14 @@ class MyWidget extends StatelessWidget {
         ),
         body: Center(
           child: Scrollbar(
+            isAlwaysShown: true,
             child: new ListView(shrinkWrap: true, children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                    child: Image.asset('assets/images/OHS.png'),
+                    child: Image.asset('lib/assets/images/OHS.png'),
                   ),
                   Divider(
                     color: Colors.black,
@@ -80,54 +81,52 @@ class MyWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        color: Colors.white,
-                        height: 40.0,
-                        child: RaisedButton(
-                          onPressed: () => {
-                            //do something
-                          },
-                          color: Colors.redAccent,
-                          child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Notifications On',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                WidgetSpan(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 2.0),
-                                    child: Icon(
-                                      Icons.lock,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   color: Colors.white,
+                      //   height: 40.0,
+                      //   child: RaisedButton(
+                      //     onPressed: () => {
+                      //       //do something
+                      //     },
+                      //     color: Colors.redAccent,
+                      //     child: RichText(
+                      //       textAlign: TextAlign.center,
+                      //       text: TextSpan(
+                      //         children: [
+                      //           TextSpan(
+                      //             text: 'Notifications On',
+                      //             style: TextStyle(
+                      //                 color: Colors.white,
+                      //                 fontSize: 13,
+                      //                 fontWeight: FontWeight.bold),
+                      //           ),
+                      //           WidgetSpan(
+                      //             child: Padding(
+                      //               padding: const EdgeInsets.symmetric(
+                      //                   horizontal: 2.0),
+                      //               child: Icon(
+                      //                 Icons.lock,
+                      //                 color: Colors.white,
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                   Padding(padding: EdgeInsets.only(top: 10)),
                   Container(
                     color: Colors.white,
                     width: MediaQuery.of(context).size.width - 50,
-                    child: Expanded(
-                      child: Text(
-                        'This title should mean something!',
-                        maxLines: 100,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
-                      ),
+                    child: Text(
+                      'This title should mean something!',
+                      maxLines: 100,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(

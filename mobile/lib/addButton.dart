@@ -10,15 +10,15 @@ class AddFolder extends StatefulWidget {
 class _AddFolder extends State<AddFolder> {
   // final test = DefaultFolders();
   TextEditingController folderNameController = new TextEditingController();
-  Color color;
-  int isTapped;
+  // Color color;
+  // int isTapped;
 
-  @override
-  void initState() {
-    super.initState();
-    isTapped = 0;
-    color = Colors.transparent;
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // isTapped = 0;
+  //   // color = Colors.transparent;
+  // }
 
   @override
   Widget build(BuildContext context) {
