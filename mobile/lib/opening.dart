@@ -104,6 +104,91 @@ class _OpeningPage extends State<OpeningPage> {
           ),
           actions: <Widget>[
             IconButton(
+              padding: EdgeInsets.only(right: 0),
+              icon: Icon(
+                Icons.delete_forever_rounded,
+                size: 30,
+                color: color4,
+              ),
+              onPressed: () {
+                //do something
+                print(words.length);
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    // String contentText = "Content of Dialog";
+                    return StatefulBuilder(
+                      builder: (context, setState) {
+                        return AlertDialog(
+                          title: Text('Select folder to delete'),
+                          content: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: FlatButton(
+                              onPressed: () {
+                                //do something
+                              },
+                              child: Text(
+                                '${words[0].folderName}',
+                              ),
+                            ),
+//                             child: Column(
+//                               mainAxisAlignment: MainAxisAlignment.center,
+//                               children: <Widget>[
+//                                 Container(
+//                                   width: MediaQuery.of(context).size.width/2,
+//                                   child: ListView.builder(
+//                                       shrinkWrap: true,
+//                                       itemCount: words.length,
+//                                       itemBuilder: (context, index) {
+//                                         return FlatButton(
+//                                             onPressed: () {
+//                                               //do something (highlight maybe)
+//                                             },
+//                                             // child: Container(
+//                                             //   width: MediaQuery.of(context).size.width/2,
+//                                             //   child: Text(
+//                                             //     '$words[index].folderName'
+//                                             //   ),
+//                                             // ),
+//                                             child: Container(
+//                                               child: Column(
+//                                                 children: <Widget>[
+//                                                   Text(
+//                                                     '$words[index].folderName',
+// textAlign: TextAlign.center,
+//                                                   ),
+
+//                                                 ],
+//                                               ),
+//                                             ),
+//                                         );
+//                                       }),
+//                                 ),
+//                               ],
+//                             ),
+
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                'Delete',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            ),
+            IconButton(
               padding: EdgeInsets.only(right: 20),
               icon: Icon(
                 Icons.add,
@@ -400,7 +485,7 @@ class _OpeningPage extends State<OpeningPage> {
                   },
                 );
               },
-            )
+            ),
           ],
         ),
         body: Align(
