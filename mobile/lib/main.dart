@@ -35,35 +35,36 @@ class MyWidget extends StatelessWidget {
           ),
 
           backgroundColor: Colors.white,
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: Icon(
-                  Icons.delete,
-                  color: color4,
-                ),
-              ),
-            )
-          ],
+          // actions: <Widget>[
+          //   Padding(
+          //     padding: EdgeInsets.only(right: 20.0),
+          //     child: GestureDetector(
+          //       onTap: () {},
+          //       child: Icon(
+          //         Icons.delete,
+          //         color: color4,
+          //       ),
+          //     ),
+          //   )
+          // ],
         ),
         body: Center(
           child: Scrollbar(
+            isAlwaysShown: true,
             child: new ListView(shrinkWrap: true, children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                    child: Image.asset('assets/images/OHS.png'),
+                    child: Image.asset('lib/assets/images/OHS.png'),
                   ),
                   Divider(
                     color: Colors.black,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Container(
                         color: Colors.white,
@@ -120,14 +121,12 @@ class MyWidget extends StatelessWidget {
                   Container(
                     color: Colors.white,
                     width: MediaQuery.of(context).size.width - 50,
-                    child: Expanded(
-                      child: Text(
-                        'This title should mean something!',
-                        maxLines: 100,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
-                      ),
+                    child: Text(
+                      'This title should mean something!',
+                      maxLines: 100,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
