@@ -35,18 +35,18 @@ class MyWidget extends StatelessWidget {
           ),
 
           backgroundColor: Colors.white,
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: Icon(
-                  Icons.delete,
-                  color: color4,
-                ),
-              ),
-            )
-          ],
+          // actions: <Widget>[
+          //   Padding(
+          //     padding: EdgeInsets.only(right: 20.0),
+          //     child: GestureDetector(
+          //       onTap: () {},
+          //       child: Icon(
+          //         Icons.delete,
+          //         color: color4,
+          //       ),
+          //     ),
+          //   )
+          // ],
         ),
         body: Center(
           child: Scrollbar(

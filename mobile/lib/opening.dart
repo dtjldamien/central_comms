@@ -37,6 +37,8 @@ class _OpeningPage extends State<OpeningPage> {
   bool colour7Pressed = false;
   bool colour8Pressed = false;
   Color folderColor;
+  Color deleteFolderColor;
+  bool deleteFolder = false;
 
   TextEditingController folderNameController = new TextEditingController();
 
@@ -120,53 +122,43 @@ class _OpeningPage extends State<OpeningPage> {
                     return StatefulBuilder(
                       builder: (context, setState) {
                         return AlertDialog(
-                          title: Text('Select folder to delete'),
-                          content: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: FlatButton(
-                              onPressed: () {
-                                //do something
-                              },
-                              child: Text(
-                                '${words[0].folderName}',
-                              ),
+                          title: Text(
+                            'Select folder to delete',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 30,
                             ),
-//                             child: Column(
-//                               mainAxisAlignment: MainAxisAlignment.center,
-//                               children: <Widget>[
-//                                 Container(
-//                                   width: MediaQuery.of(context).size.width/2,
-//                                   child: ListView.builder(
-//                                       shrinkWrap: true,
-//                                       itemCount: words.length,
-//                                       itemBuilder: (context, index) {
-//                                         return FlatButton(
-//                                             onPressed: () {
-//                                               //do something (highlight maybe)
-//                                             },
-//                                             // child: Container(
-//                                             //   width: MediaQuery.of(context).size.width/2,
-//                                             //   child: Text(
-//                                             //     '$words[index].folderName'
-//                                             //   ),
-//                                             // ),
-//                                             child: Container(
-//                                               child: Column(
-//                                                 children: <Widget>[
-//                                                   Text(
-//                                                     '$words[index].folderName',
-// textAlign: TextAlign.center,
-//                                                   ),
+                          ),
+                          titlePadding: EdgeInsets.fromLTRB(20, 30, 20, 10),
+                          content: Container(
+                        
+                            width: 100,
+                            child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: words.length,
+                              itemBuilder: (context, index) {
+                                return FlatButton(
+                                  onPressed: () {
+                                    //do something
+                                    setState(() {
+                                      deleteFolder = !deleteFolder;
+                                    });
+                                  },
+                                  shape: Border.all(
+                                    width: 2,
+                                    color: deleteFolder
+                                        ? Colors.blue.shade400
+                                        : Colors.transparent,
+                                  ),
 
-//                                                 ],
-//                                               ),
-//                                             ),
-//                                         );
-//                                       }),
-//                                 ),
-//                               ],
-//                             ),
-
+                                  // shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical()),
+                                  child: Text(
+                                    '${words[index].folderName}',
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                           actions: <Widget>[
                             TextButton(
