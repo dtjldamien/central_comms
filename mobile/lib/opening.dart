@@ -39,6 +39,7 @@ class _OpeningPage extends State<OpeningPage> {
   Color folderColor;
   Color deleteFolderColor;
   bool deleteFolder = false;
+  int globalIndex;
 
   TextEditingController folderNameController = new TextEditingController();
 
@@ -64,6 +65,8 @@ class _OpeningPage extends State<OpeningPage> {
       Colors.grey,
     ),
   ];
+
+  // List<bool> isSelected = List.filled(words.length, false);
 
   void addFoldersToList(String newFolderName, Color folderColor) {
     setState(() {
@@ -131,7 +134,6 @@ class _OpeningPage extends State<OpeningPage> {
                           ),
                           titlePadding: EdgeInsets.fromLTRB(20, 30, 20, 10),
                           content: Container(
-                        
                             width: 100,
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
@@ -142,7 +144,11 @@ class _OpeningPage extends State<OpeningPage> {
                                   onPressed: () {
                                     //do something
                                     setState(() {
+                                      // isSelected[index] = !isSelected[index];
+                                      // print(isSelected[index]);
                                       deleteFolder = !deleteFolder;
+                                      print(index);
+                                      globalIndex = index;
                                     });
                                   },
                                   shape: Border.all(
@@ -164,6 +170,49 @@ class _OpeningPage extends State<OpeningPage> {
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
+                                setState(() {
+                                  return showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          contentPadding: EdgeInsets.fromLTRB(
+                                              20, 20, 20, 20),
+                                          content: Container(
+                                              // width: 250.0,
+                                              height: 40.0,
+                                              child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                        "Deleting folder will delete all news from that folder.",
+                                                        style: TextStyle(
+                                                            fontFamily:
+                                                                "OpenSans",
+                                                            color: Color(
+                                                                0xFF5B6978)))
+                                                  ])),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text(
+                                                'Cancel',
+                                              ),
+                                            ),
+                                            TextButton(
+                                                onPressed: () {
+                                                  words.removeAt(globalIndex);
+                                                  print(words.length);
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('Confirm')),
+                                          ],
+                                        );
+                                      });
+                                });
                               },
                               child: Text(
                                 'Delete',
