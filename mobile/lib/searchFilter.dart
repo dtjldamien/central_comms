@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class MyClass {
   String date;
   String description;
   // String image;
-  MyClass(this.date, this.description);
+  Color folderColor;
+  MyClass(this.date, this.description, this.folderColor);
 }
 
 class SearchFilter extends StatefulWidget {
   // searchFilter({Key ? key, this.title}) : super(key: key);
   // searchFilter({ Key? key}) : super(key: key);
   // final String title;
+
+  SearchFilter({Key key}) : super(key: key);
 
   @override
   _SearchFilterState createState() => new _SearchFilterState();
@@ -24,16 +28,26 @@ class _SearchFilterState extends State<SearchFilter> {
 
   List<MyClass> words = [
     MyClass(
-        '22 Dec', "And there are miles of lorries parked on the M20 to Dover."),
-    MyClass('21 Nov',
-        "Here’s the view from the roof of one of the thousands of lorries parked in Manston airport in Kent."),
-    MyClass('20 Oct',
-        "People who fail to get vaccine could be banned from using public transport in France, according to a draft law sparking angry protests from opposition politicians, AFP reports."),
-    MyClass('19 Sep',
-        "Hospitals in the Netherlands have said they will postpone all non-critical care in the coming weeks in order to deal with the rapid rise in Covid patients, Reuters reports."),
-    MyClass('18 Aug',
-        "We are giving it the final push”, the EU’s chief Brexit negotiator, Michael Barnier has told reporters in Brussels."),
-    MyClass('17 Jul', "Sturgeon warns of possible lockdown."),
+        '22 Dec',
+        "And there are miles of lorries parked on the M20 to Dover.",
+        Colors.amber),
+    MyClass(
+        '21 Nov',
+        "Here’s the view from the roof of one of the thousands of lorries parked in Manston airport in Kent.",
+        Colors.red),
+    MyClass(
+        '20 Oct',
+        "People who fail to get vaccine could be banned from using public transport in France, according to a draft law sparking angry protests from opposition politicians, AFP reports.",
+        Colors.black),
+    MyClass(
+        '19 Sep',
+        "Hospitals in the Netherlands have said they will postpone all non-critical care in the coming weeks in order to deal with the rapid rise in Covid patients, Reuters reports.",
+        Colors.black),
+    MyClass(
+        '18 Aug',
+        "We are giving it the final push”, the EU’s chief Brexit negotiator, Michael Barnier has told reporters in Brussels.",
+        Colors.green),
+    MyClass('17 Jul', "Sturgeon warns of possible lockdown.", Colors.green),
   ];
 
   @override
@@ -74,23 +88,69 @@ class _SearchFilterState extends State<SearchFilter> {
                 shrinkWrap: true,
                 itemCount: words.length,
                 itemBuilder: (context, index) {
-                  if (editingController.text.isEmpty) { // search bar is empty
-                    return widget1(words, index);
-                  } else if (words[
-                              index] 
+              
+                  if (editingController.text.isEmpty) {
+                    // search bar is empty
+
+                    return Dismissible(
+                      key: UniqueKey(), //changed from original
+
+                      onDismissed: (direction) {
+                        setState(() {
+                          words.removeAt(index);
+                        });
+
+                        // Then show a snackbar.
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                            // content: Text('deleted "${words[index].description}" that was posted on ${words[index].date}')));
+                            content: Text("delete $index")));
+                      },
+
+                      background: Container(color: Colors.red),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5, bottom: 5),
+                        child: widget1(words, index),
+                      ),
+                    );
+                  } else if (words[index]
                           .date
                           .toLowerCase()
                           .contains(editingController.text) ||
                       words[index]
                           .description
                           .toLowerCase()
-                          .contains(editingController.text)) { // something in being typed in search bar
-                    return widget1(words, index);
+                          .contains(editingController.text)) {
+                    // something in being typed in search bar
+
+                    return Dismissible(
+                      key: UniqueKey(), //changed from original
+
+                      onDismissed: (direction) {
+                        setState(() {
+                          words.removeAt(index);
+                        });
+
+                        // Then show a snackbar.
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                            // content: Text('deleted "${words[index].description}" that was posted on ${words[index].date}')));
+                            content: Text("delete $index")));
+                      },
+
+                      background: Container(color: Colors.red),
+
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5, bottom: 5),
+                        child: widget1(words, index),
+                      ),
+                    );
                   } else {
                     return Container(); // return nothing
                   }
                 }),
           ),
+
+          Padding(padding: EdgeInsets.only(top: 15))
         ],
       ),
     );
@@ -98,16 +158,32 @@ class _SearchFilterState extends State<SearchFilter> {
 }
 
 Widget widget1(List<MyClass> words, int index) {
+  // final word = words[index];
   return FlatButton(
+    shape: Border(
+      left: BorderSide(color: words[index].folderColor, width: 5),
+      right: BorderSide(
+        width: 1,
+        color: Colors.grey.shade300,
+      ),
+      top: BorderSide(
+        width: 1,
+        color: Colors.grey.shade300,
+      ),
+      bottom: BorderSide(
+        width: 1,
+        color: Colors.grey.shade300,
+      ),
+    ),
     onPressed: () {
       //do something
     },
     child: Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey.shade300,
-        ),
-      ),
+      // decoration: BoxDecoration(
+      //   border: Border.all(
+      //     color: Colors.grey.shade300,
+      //   ),
+      // ),
       child: ListTile(
         leading: Column(
           mainAxisAlignment: MainAxisAlignment.center,
