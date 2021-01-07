@@ -1,7 +1,6 @@
 import 'package:central_comms/main.dart';
 import 'package:flutter/material.dart';
 import 'package:central_comms/searchFilter.dart';
-import 'package:flutter/semantics.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final Color color1 = Colors.red;
@@ -21,7 +20,9 @@ class MyClass {
   IconData iconName;
   Color folderColor;
   bool selected;
-  MyClass(this.folderName, this.iconName, this.folderColor, this.selected);
+  bool canBeDeleted;
+  MyClass(this.folderName, this.iconName, this.folderColor, this.selected,
+      this.canBeDeleted);
 }
 
 class FolderIcon {
@@ -48,6 +49,16 @@ class _OpeningPage extends State<OpeningPage> {
   bool deleteFolder = false;
   int globalIndex = -1;
 
+  // initState() {
+  //   super.initState();
+  //   // for (var i = 0; i < 100; i++) {
+  //   //   ids.add(i);
+  //   }
+  @override
+  void initState() {
+    super.initState();
+  }
+
   TextEditingController folderNameController = new TextEditingController();
 
   List<MyClass> words = [
@@ -56,11 +67,13 @@ class _OpeningPage extends State<OpeningPage> {
       Icons.notification_important_rounded,
       Colors.red,
       false,
+      false,
     ),
     MyClass(
       'Circulars',
       Icons.circle,
       Colors.green,
+      false,
       false,
     ),
     MyClass(
@@ -68,11 +81,13 @@ class _OpeningPage extends State<OpeningPage> {
       Icons.announcement_rounded,
       Colors.orange,
       false,
+      false,
     ),
     MyClass(
       'Notices',
       Icons.article_rounded,
       Colors.grey,
+      false,
       false,
     ),
   ];
@@ -95,7 +110,14 @@ class _OpeningPage extends State<OpeningPage> {
         Icons.file_download,
         folderColor,
         false,
+        true,
       )); // temporary icon
+    });
+  }
+
+  void removeFolderFromList() {
+    setState(() {
+      words.removeAt(globalIndex);
     });
   }
 
@@ -160,46 +182,48 @@ class _OpeningPage extends State<OpeningPage> {
                               shrinkWrap: true,
                               itemCount: words.length,
                               itemBuilder: (context, index) {
-                                return FlatButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      if (!deleteFolder) {
-                                        words[index].selected = true;
-                                        globalIndex = index;
-                                      } else {
-                                        globalIndex = -1;
-                                        words[index].selected = false;
-                                      }
-                                      deleteFolder = !deleteFolder;
-                                    });
-                                  },
-                                  shape: Border.all(
-                                    width: 2,
-                                    color: words[index].selected
-                                        ? Colors.blue.shade400
-                                        : Colors.transparent,
-                                  ),
-                                  child: Text(
-                                    '${words[index].folderName}',
-                                  ),
-                                );
+                                if (words[index].canBeDeleted) {
+                                  return FlatButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        if (!deleteFolder) {
+                                          words[index].selected = true;
+                                          globalIndex = index;
+                                        } else {
+                                          globalIndex = -1;
+                                          words[index].selected = false;
+                                        }
+                                        deleteFolder = !deleteFolder;
+                                      });
+                                    },
+                                    shape: Border.all(
+                                      width: 2,
+                                      color: words[index].selected
+                                          ? Colors.blue.shade400
+                                          : Colors.transparent,
+                                    ),
+                                    child: Text(
+                                      '${words[index].folderName}',
+                                    ),
+                                  );
+                                } else {
+                                  return Container();
+                                }
                               },
                             ),
                           ),
                           actions: <Widget>[
                             TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text(
-                                    'Cancel',
-                                    
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                       
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
                             TextButton(
                               onPressed: () {
                                 if (globalIndex != -1) {
@@ -238,7 +262,11 @@ class _OpeningPage extends State<OpeningPage> {
                                               ),
                                               TextButton(
                                                   onPressed: () {
-                                                    words.removeAt(globalIndex);
+                                                    print(words[globalIndex]
+                                                        .folderName);
+
+                                                    removeFolderFromList();
+
                                                     globalIndex = -1;
                                                     print(words.length);
                                                     Navigator.pop(context);
