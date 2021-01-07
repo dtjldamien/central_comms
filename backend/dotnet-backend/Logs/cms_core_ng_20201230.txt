@@ -1,0 +1,26 @@
+----------------------------------------------------------------------
+Date Occured - 30/12/2020 7:43:10 pm +08:00 | Severity Level - Error |
+----------------------------------------------------------------------
+SourceContext : "Microsoft.AspNetCore.SpaServices"
+Application : "CMS_CORE_NG"
+MachineName : "WINDOWS-SB2"
+CurrentManagedThreadId : 1
+OSVersion : "Microsoft Windows NT 10.0.18363.0"
+Version : "3.1.10"
+UserName : "dtjldamien"
+ProcessId : 14752
+ProcessName : "iisexpress"
+---------------------------------------------------------------------------
+----------------------------------------------------------------------
+Date Occured - 30/12/2020 7:43:45 pm +08:00 | Severity Level - Error |
+----------------------------------------------------------------------
+SourceContext : "Microsoft.AspNetCore.SpaServices"
+Application : "CMS_CORE_NG"
+MachineName : "WINDOWS-SB2"
+CurrentManagedThreadId : 1
+OSVersion : "Microsoft Windows NT 10.0.18363.0"
+Version : "3.1.10"
+UserName : "dtjldamien"
+ProcessId : 14752
+ProcessName : "iisexpress"
+---------------------------------------------------------------------------
