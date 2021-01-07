@@ -1,0 +1,9 @@
+C:\Users\dtjld\Desktop\central_comms\LoggingService\bin\Debug\netcoreapp3.1\LoggingService.deps.json
+C:\Users\dtjld\Desktop\central_comms\LoggingService\bin\Debug\netcoreapp3.1\LoggingService.dll
+C:\Users\dtjld\Desktop\central_comms\LoggingService\bin\Debug\netcoreapp3.1\LoggingService.pdb
+C:\Users\dtjld\Desktop\central_comms\LoggingService\obj\Debug\netcoreapp3.1\LoggingService.csprojAssemblyReference.cache
+C:\Users\dtjld\Desktop\central_comms\LoggingService\obj\Debug\netcoreapp3.1\LoggingService.AssemblyInfoInputs.cache
+C:\Users\dtjld\Desktop\central_comms\LoggingService\obj\Debug\netcoreapp3.1\LoggingService.AssemblyInfo.cs
+C:\Users\dtjld\Desktop\central_comms\LoggingService\obj\Debug\netcoreapp3.1\LoggingService.csproj.CoreCompileInputs.cache
+C:\Users\dtjld\Desktop\central_comms\LoggingService\obj\Debug\netcoreapp3.1\LoggingService.dll
+C:\Users\dtjld\Desktop\central_comms\LoggingService\obj\Debug\netcoreapp3.1\LoggingService.pdb

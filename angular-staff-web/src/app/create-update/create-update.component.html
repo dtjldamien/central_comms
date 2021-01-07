@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <h2>Create an update</h2>
+  </div>
+
+  <form class="example-form">
+    <div class="row">
+      <div class="col-xl-6">
+        <div class="row-sm-6"><h3>Title</h3></div>
+        <div class="row-sm-6">
+          <mat-form-field class="example-full-width">
+            <mat-label>Title</mat-label>
+            <textarea
+              [(ngModel)]="newUpdate.title"
+              matInput
+              placeholder="New Title"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <div class="row-sm-6"><h3>Recipients</h3></div>
+        <div class="row-sm-6">
+          <input
+            [(ngModel)]="newUpdate.recipients"
+            matInput
+            placeholder="Recipients"
+          />
+        </div>
+        <div class="row-sm-6"><h3>Message</h3></div>
+        <div class="row-sm-6">
+          <p>{{ newUpdate.message }}</p>
+        </div>
+        <div class="row-sm-6"><h3>Cover Image</h3></div>
+        <div class="row-sm-6">
+          <!-- <img
+            class="update-cover-image"
+            mat-card-image
+            src="{{ newUpdate.coverImage }}"
+            alt="Cover Image"
+          /> -->
+          <div class="form-group">
+            <label for="file">File</label>
+            <input
+              formControlName="file"
+              id="file"
+              type="file"
+              class="form-control"
+              (change)="onFileChange($event)"
+            />
+            <div
+              *ngIf="f.file.touched && f.file.invalid"
+              class="alert alert-danger"
+            >
+              <div *ngIf="f.file.errors.required">File is required.</div>
+            </div>
+          </div>
+
+          <img [src]="imageSrc" *ngIf="imageSrc" style="width: 500px" />
+        </div>
+        <div class="row-sm-6"><h3>Summary</h3></div>
+        <div class="row-sm-6">
+          <p>{{ newUpdate.summary }}</p>
+          <quill-editor></quill-editor>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="row-sm-6"><h3>Department</h3></div>
+        <div class="row-sm-6">
+          <mat-form-field appearance="fill">
+            <mat-select>
+              <mat-option *ngFor="let dept of depts" [value]="dept">
+                {{ dept }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row-sm-6"><h3>Type of Update</h3></div>
+        <div class="row-sm-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Department</mat-label>
+            <mat-select>
+              <mat-option
+                *ngFor="let type of typeOfUpdates"
+                [value]="newUpdate.typeOfUpdate"
+              >
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="row-sm-6"><h3>Sent On</h3></div>
+        <div class="row-sm-6">
+          <p>{{ newUpdate.scheduleMessage }}</p>
+        </div>
+
+        <div class="row-sm-6"><h3>Tags</h3></div>
+        <div class="row-sm-6">
+          <input
+            [(ngModel)]="newUpdate.title"
+            matInput
+            placeholder="New Title"
+          />
+        </div>
+
+        <div class="row-sm-6"><h3>Follow Up Action Type</h3></div>
+        <div class="row-sm-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Action Type</mat-label>
+            <mat-select>
+              <mat-option
+                *ngFor="let type of followUpTypes"
+                [value]="update.followUpActionType"
+              >
+                {{ update.followUpActionType }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="row-sm-6"><h3>Follow Up Action</h3></div>
+        <div class="row-sm-6">
+          <input
+            [(ngModel)]="newUpdate.followUpAction"
+            matInput
+            placeholder="New Title"
+          />
+        </div>
+
+        <div class="row-sm-6">
+          <div class="d-flex justify-content-between">
+            <div><button mat-raised-button>Preview Update</button></div>
+            <div><button mat-raised-button>Create Update</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
