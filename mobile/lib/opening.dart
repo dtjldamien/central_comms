@@ -19,7 +19,15 @@ class MyClass {
   String folderName;
   IconData iconName;
   Color folderColor;
-  MyClass(this.folderName, this.iconName, this.folderColor);
+  bool selected;
+  bool canBeDeleted;
+  MyClass(this.folderName, this.iconName, this.folderColor, this.selected,
+      this.canBeDeleted);
+}
+
+class FolderIcon {
+  IconData iconName;
+  FolderIcon(this.iconName);
 }
 
 class OpeningPage extends StatefulWidget {
@@ -39,6 +47,17 @@ class _OpeningPage extends State<OpeningPage> {
   Color folderColor;
   Color deleteFolderColor;
   bool deleteFolder = false;
+  int globalIndex = -1;
+
+  // initState() {
+  //   super.initState();
+  //   // for (var i = 0; i < 100; i++) {
+  //   //   ids.add(i);
+  //   }
+  @override
+  void initState() {
+    super.initState();
+  }
 
   TextEditingController folderNameController = new TextEditingController();
 
@@ -47,22 +66,41 @@ class _OpeningPage extends State<OpeningPage> {
       'Actions needed',
       Icons.notification_important_rounded,
       Colors.red,
+      false,
+      false,
     ),
     MyClass(
       'Circulars',
       Icons.circle,
       Colors.green,
+      false,
+      false,
     ),
     MyClass(
       'Announcements',
       Icons.announcement_rounded,
       Colors.orange,
+      false,
+      false,
     ),
     MyClass(
       'Notices',
       Icons.article_rounded,
       Colors.grey,
+      false,
+      false,
     ),
+  ];
+
+  List<FolderIcon> icons = [
+    FolderIcon(Icons.important_devices_rounded),
+    FolderIcon(Icons.access_alarm_rounded),
+    FolderIcon(Icons.accessibility_rounded),
+    FolderIcon(Icons.rounded_corner_rounded),
+    FolderIcon(Icons.add_circle_outline_rounded),
+    FolderIcon(Icons.deck_rounded),
+    FolderIcon(Icons.tab_rounded),
+    FolderIcon(Icons.arrow_back_ios_rounded),
   ];
 
   void addFoldersToList(String newFolderName, Color folderColor) {
@@ -71,7 +109,15 @@ class _OpeningPage extends State<OpeningPage> {
         newFolderName,
         Icons.file_download,
         folderColor,
+        false,
+        true,
       )); // temporary icon
+    });
+  }
+
+  void removeFolderFromList() {
+    setState(() {
+      words.removeAt(globalIndex);
     });
   }
 
@@ -108,7 +154,7 @@ class _OpeningPage extends State<OpeningPage> {
             IconButton(
               padding: EdgeInsets.only(right: 0),
               icon: Icon(
-                Icons.delete_forever_rounded,
+                Icons.delete,
                 size: 30,
                 color: color4,
               ),
@@ -118,7 +164,6 @@ class _OpeningPage extends State<OpeningPage> {
                 showDialog(
                   context: context,
                   builder: (context) {
-                    // String contentText = "Content of Dialog";
                     return StatefulBuilder(
                       builder: (context, setState) {
                         return AlertDialog(
@@ -131,32 +176,39 @@ class _OpeningPage extends State<OpeningPage> {
                           ),
                           titlePadding: EdgeInsets.fromLTRB(20, 30, 20, 10),
                           content: Container(
-                        
                             width: 100,
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               itemCount: words.length,
                               itemBuilder: (context, index) {
-                                return FlatButton(
-                                  onPressed: () {
-                                    //do something
-                                    setState(() {
-                                      deleteFolder = !deleteFolder;
-                                    });
-                                  },
-                                  shape: Border.all(
-                                    width: 2,
-                                    color: deleteFolder
-                                        ? Colors.blue.shade400
-                                        : Colors.transparent,
-                                  ),
-
-                                  // shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical()),
-                                  child: Text(
-                                    '${words[index].folderName}',
-                                  ),
-                                );
+                                if (words[index].canBeDeleted) {
+                                  return FlatButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        if (!deleteFolder) {
+                                          words[index].selected = true;
+                                          globalIndex = index;
+                                        } else {
+                                          globalIndex = -1;
+                                          words[index].selected = false;
+                                        }
+                                        deleteFolder = !deleteFolder;
+                                      });
+                                    },
+                                    shape: Border.all(
+                                      width: 2,
+                                      color: words[index].selected
+                                          ? Colors.blue.shade400
+                                          : Colors.transparent,
+                                    ),
+                                    child: Text(
+                                      '${words[index].folderName}',
+                                    ),
+                                  );
+                                } else {
+                                  return Container();
+                                }
                               },
                             ),
                           ),
@@ -164,6 +216,67 @@ class _OpeningPage extends State<OpeningPage> {
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
+                              },
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                if (globalIndex != -1) {
+                                  Navigator.pop(
+                                      context); //pop first dialog and open confirmation page
+                                  setState(() {
+                                    return showDialog(
+                                        barrierDismissible: false,
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            contentPadding: EdgeInsets.fromLTRB(
+                                                20, 20, 20, 20),
+                                            content: Container(
+                                                height: 40.0,
+                                                child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                          "Deleting folder will delete all news from that folder.",
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  "OpenSans",
+                                                              color: Color(
+                                                                  0xFF5B6978)))
+                                                    ])),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  'Cancel',
+                                                ),
+                                              ),
+                                              TextButton(
+                                                  onPressed: () {
+                                                    print(words[globalIndex]
+                                                        .folderName);
+
+                                                    removeFolderFromList();
+
+                                                    globalIndex = -1;
+                                                    print(words.length);
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text('Confirm')),
+                                            ],
+                                          );
+                                        });
+                                  });
+                                }
                               },
                               child: Text(
                                 'Delete',
@@ -191,7 +304,6 @@ class _OpeningPage extends State<OpeningPage> {
                 showDialog(
                   context: context,
                   builder: (context) {
-                    // String contentText = "Content of Dialog";
                     return StatefulBuilder(
                       builder: (context, setState) {
                         return AlertDialog(
@@ -219,11 +331,11 @@ class _OpeningPage extends State<OpeningPage> {
                                 Center(
                                   child: Padding(
                                     padding: EdgeInsets.only(
-                                      top: 20,
+                                      top: 30,
                                       bottom: 20,
                                     ),
                                     child: Text(
-                                      'Color theme',
+                                      'Color theme (swipe for more)',
                                       style: TextStyle(
                                         color: Colors.grey.shade700,
                                         fontWeight: FontWeight.bold,
@@ -450,6 +562,81 @@ class _OpeningPage extends State<OpeningPage> {
                                     ],
                                   ),
                                 ),
+                                Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 40,
+                                      bottom: 20,
+                                    ),
+                                    child: Text(
+                                      'Icon (swipe for more)',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade700,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                // SingleChildScrollView(
+                                //   scrollDirection: Axis.horizontal,
+                                //   child: Row(
+                                //     children: <Widget>[
+                                //       MaterialButton(
+
+                                // SingleChildScrollView(
+                                //   scrollDirection: Axis.horizontal,
+                                //   child: Row(
+                                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                //     children: [
+                                //       ListView.builder(
+                                //         scrollDirection: Axis.horizontal,
+                                //         shrinkWrap: true,
+                                //         itemCount: icons.length,
+                                //         itemBuilder: (context, index) {
+
+                                //           return FlatButton(
+                                //             shape: Border(
+                                //               left: BorderSide(
+                                //                   color: words[index]
+                                //                       .folderColor,
+                                //                   width: 5),
+                                //               right: BorderSide(
+                                //                 width: .5,
+                                //                 color: Colors.grey.shade300,
+                                //               ),
+                                //               top: BorderSide(
+                                //                 width: .5,
+                                //                 color: Colors.grey.shade300,
+                                //               ),
+                                //               bottom: BorderSide(
+                                //                 width: .5,
+                                //                 color: Colors.grey.shade300,
+                                //               ),
+                                //             ),
+                                //             onPressed: () {
+                                //               //do something
+                                //             },
+                                //             // width: 50,
+                                //             // height: 50,
+                                //             //   child: Icon(
+                                //             //     icons[index].iconName,
+                                //             //     size: 40,
+                                //             //     color: grey7,
+                                //             //   ),
+                                //             child: Container(
+                                //               child: Text(
+                                //                 "Index : $index icons",
+                                //                 style:
+                                //                     TextStyle(fontSize: 20),
+                                //               ),
+                                //             ),
+                                //           );
+                                //         },
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -504,57 +691,66 @@ class _OpeningPage extends State<OpeningPage> {
                         shrinkWrap: true,
                         itemCount: words.length,
                         itemBuilder: (context, index) {
-                          return FlatButton(
-                            shape: Border(
-                              left: BorderSide(
-                                  color: words[index].folderColor, width: 5),
-                              right: BorderSide(
-                                width: .5,
-                                color: Colors.grey.shade300,
-                              ),
-                              top: BorderSide(
-                                width: .5,
-                                color: Colors.grey.shade300,
-                              ),
-                              bottom: BorderSide(
-                                width: .5,
-                                color: Colors.grey.shade300,
-                              ),
-                            ),
-                            onPressed: () {
-                              //do something
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(200),
-                                  topRight: Radius.circular(200),
-                                  bottomLeft: Radius.zero,
-                                  bottomRight: Radius.zero,
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: FlatButton(
+                              shape: Border(
+                                left: BorderSide(
+                                    color: words[index].folderColor, width: 5),
+                                right: BorderSide(
+                                  width: 1,
+                                  color: Colors.grey.shade300,
+                                ),
+                                top: BorderSide(
+                                  width: 1,
+                                  color: Colors.grey.shade300,
+                                ),
+                                bottom: BorderSide(
+                                  width: 1,
+                                  color: Colors.grey.shade300,
                                 ),
                               ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    words[index].iconName,
-                                    color: words[index].folderColor,
+                              onPressed: () {
+                                //do something
+                                SearchFilter()
+                                    .createState()
+                                    .folderColor(words[index].folderColor);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(200),
+                                    topRight: Radius.circular(200),
+                                    bottomLeft: Radius.zero,
+                                    bottomRight: Radius.zero,
                                   ),
-                                  Text(
-                                    '${words[index].folderName}',
-                                    style: TextStyle(
-                                      color: Colors.grey.shade700,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      words[index].iconName,
+                                      color: words[index].folderColor,
                                     ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
+                                    Text(
+                                      '${words[index].folderName}',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade700,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           );
                         },
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right: 20),
                       ),
                     ],
                   ),
