@@ -1,20 +1,16 @@
+import 'package:central_comms/opening.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 class MyClass {
   String date;
   String description;
-  // String image;
   Color folderColor;
   MyClass(this.date, this.description, this.folderColor);
 }
 
 class SearchFilter extends StatefulWidget {
-  // searchFilter({Key ? key, this.title}) : super(key: key);
-  // searchFilter({ Key? key}) : super(key: key);
-  // final String title;
-
-  SearchFilter({Key key}) : super(key: key);
+  SearchFilter({Key key, MyClass word}) : super(key: key);
 
   @override
   _SearchFilterState createState() => new _SearchFilterState();
@@ -24,7 +20,13 @@ class _SearchFilterState extends State<SearchFilter> {
   TextEditingController editingController = TextEditingController();
 
   final duplicateItems = List<String>.generate(10000, (i) => "Item $i");
+  Color filterC;
   // var items = List<String>();
+
+  void folderColor(Color folder) {
+    filterC = folder;
+    print(filterC);
+  }
 
   List<MyClass> words = [
     MyClass(
@@ -53,6 +55,7 @@ class _SearchFilterState extends State<SearchFilter> {
   @override
   void initState() {
     super.initState();
+    print(filterC);
   }
 
   @override
@@ -88,7 +91,6 @@ class _SearchFilterState extends State<SearchFilter> {
                 shrinkWrap: true,
                 itemCount: words.length,
                 itemBuilder: (context, index) {
-              
                   if (editingController.text.isEmpty) {
                     // search bar is empty
 
@@ -144,12 +146,34 @@ class _SearchFilterState extends State<SearchFilter> {
                         child: widget1(words, index),
                       ),
                     );
+                  } else if (words[index].folderColor == filterC) {
+                    print('$index');
+                    //                     return Dismissible(
+                    //   key: UniqueKey(), //changed from original
+
+                    //   onDismissed: (direction) {
+                    //     setState(() {
+                    //       words.removeAt(index);
+                    //     });
+
+                    //     // Then show a snackbar.
+                    //     Scaffold.of(context).showSnackBar(SnackBar(
+                    //         // content: Text('deleted "${words[index].description}" that was posted on ${words[index].date}')));
+                    //         content: Text("delete $index")));
+                    //   },
+
+                    //   background: Container(color: Colors.red),
+
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(top: 5, bottom: 5),
+                    //     child: widget1(words, index),
+                    //   ),
+                    // );
                   } else {
                     return Container(); // return nothing
                   }
                 }),
           ),
-
           Padding(padding: EdgeInsets.only(top: 15))
         ],
       ),
@@ -158,7 +182,6 @@ class _SearchFilterState extends State<SearchFilter> {
 }
 
 Widget widget1(List<MyClass> words, int index) {
-  // final word = words[index];
   return FlatButton(
     shape: Border(
       left: BorderSide(color: words[index].folderColor, width: 5),

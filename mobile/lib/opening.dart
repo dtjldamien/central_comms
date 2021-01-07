@@ -1,6 +1,7 @@
 import 'package:central_comms/main.dart';
 import 'package:flutter/material.dart';
 import 'package:central_comms/searchFilter.dart';
+import 'package:flutter/semantics.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final Color color1 = Colors.red;
@@ -186,6 +187,19 @@ class _OpeningPage extends State<OpeningPage> {
                             ),
                           ),
                           actions: <Widget>[
+                            TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    'Cancel',
+                                    
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                       
                             TextButton(
                               onPressed: () {
                                 if (globalIndex != -1) {
@@ -670,6 +684,9 @@ class _OpeningPage extends State<OpeningPage> {
                               ),
                               onPressed: () {
                                 //do something
+                                SearchFilter()
+                                    .createState()
+                                    .folderColor(words[index].folderColor);
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -703,6 +720,9 @@ class _OpeningPage extends State<OpeningPage> {
                             ),
                           );
                         },
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right: 20),
                       ),
                     ],
                   ),

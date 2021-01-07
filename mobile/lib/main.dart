@@ -1,5 +1,6 @@
 import 'package:central_comms/opening.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,21 +16,22 @@ class MyApp extends StatelessWidget {
 }
 
 class MyWidget extends StatelessWidget {
+  String website = 'https://www.google.com';
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       home: new Scaffold(
         appBar: AppBar(
-
           leading: GestureDetector(
-            onTap: () { 
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => OpeningPage()),
               );
             },
             child: Icon(
-              Icons.close_rounded,  // add custom icons also
+              Icons.close_rounded, // add custom icons also
               color: color4,
             ),
           ),
@@ -125,8 +127,8 @@ class MyWidget extends StatelessWidget {
                       'This title should mean something!',
                       maxLines: 100,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 40, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
@@ -143,6 +145,8 @@ class MyWidget extends StatelessWidget {
                     child: RaisedButton(
                       onPressed: () => {
                         // do something
+
+                        launch('$website'),
                       },
                       color: Colors.red,
                       child: Text(
