@@ -15,13 +15,13 @@ final Color grey4 = Colors.grey.shade400;
 final Color grey7 = Colors.grey.shade700;
 final Color grey1 = Colors.grey.shade100;
 
-class MyClass {
+class Folder {
   String folderName;
   IconData iconName;
   Color folderColor;
   bool selected;
   bool canBeDeleted;
-  MyClass(this.folderName, this.iconName, this.folderColor, this.selected,
+  Folder(this.folderName, this.iconName, this.folderColor, this.selected,
       this.canBeDeleted);
 }
 
@@ -49,11 +49,6 @@ class _OpeningPage extends State<OpeningPage> {
   bool deleteFolder = false;
   int globalIndex = -1;
 
-  // initState() {
-  //   super.initState();
-  //   // for (var i = 0; i < 100; i++) {
-  //   //   ids.add(i);
-  //   }
   @override
   void initState() {
     super.initState();
@@ -61,29 +56,29 @@ class _OpeningPage extends State<OpeningPage> {
 
   TextEditingController folderNameController = new TextEditingController();
 
-  List<MyClass> words = [
-    MyClass(
+  List<Folder> folder = [
+    Folder(
       'Actions needed',
       Icons.notification_important_rounded,
       Colors.red,
       false,
       false,
     ),
-    MyClass(
+    Folder(
       'Circulars',
       Icons.circle,
       Colors.green,
       false,
       false,
     ),
-    MyClass(
+    Folder(
       'Announcements',
       Icons.announcement_rounded,
       Colors.orange,
       false,
       false,
     ),
-    MyClass(
+    Folder(
       'Notices',
       Icons.article_rounded,
       Colors.grey,
@@ -105,7 +100,7 @@ class _OpeningPage extends State<OpeningPage> {
 
   void addFoldersToList(String newFolderName, Color folderColor) {
     setState(() {
-      words.add(MyClass(
+      folder.add(Folder(
         newFolderName,
         Icons.file_download,
         folderColor,
@@ -117,7 +112,7 @@ class _OpeningPage extends State<OpeningPage> {
 
   void removeFolderFromList() {
     setState(() {
-      words.removeAt(globalIndex);
+      folder.removeAt(globalIndex);
     });
   }
 
@@ -160,7 +155,7 @@ class _OpeningPage extends State<OpeningPage> {
               ),
               onPressed: () {
                 //do something
-                print(words.length);
+                print(folder.length);
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -180,30 +175,30 @@ class _OpeningPage extends State<OpeningPage> {
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
-                              itemCount: words.length,
+                              itemCount: folder.length,
                               itemBuilder: (context, index) {
-                                if (words[index].canBeDeleted) {
+                                if (folder[index].canBeDeleted) {
                                   return FlatButton(
                                     onPressed: () {
                                       setState(() {
                                         if (!deleteFolder) {
-                                          words[index].selected = true;
+                                          folder[index].selected = true;
                                           globalIndex = index;
                                         } else {
                                           globalIndex = -1;
-                                          words[index].selected = false;
+                                          folder[index].selected = false;
                                         }
                                         deleteFolder = !deleteFolder;
                                       });
                                     },
                                     shape: Border.all(
                                       width: 2,
-                                      color: words[index].selected
+                                      color: folder[index].selected
                                           ? Colors.blue.shade400
                                           : Colors.transparent,
                                     ),
                                     child: Text(
-                                      '${words[index].folderName}',
+                                      '${folder[index].folderName}',
                                     ),
                                   );
                                 } else {
@@ -262,16 +257,55 @@ class _OpeningPage extends State<OpeningPage> {
                                               ),
                                               TextButton(
                                                   onPressed: () {
-                                                    print(words[globalIndex]
+                                                    print(folder[globalIndex]
                                                         .folderName);
 
                                                     removeFolderFromList();
 
                                                     globalIndex = -1;
-                                                    print(words.length);
+                                                    print(folder.length);
                                                     Navigator.pop(context);
                                                   },
                                                   child: Text('Confirm')),
+                                            ],
+                                          );
+                                        });
+                                  });
+                                } else {
+                                  Navigator.pop(context);
+                                                                   setState(() {
+                                    return showDialog(
+                                        barrierDismissible: false,
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+
+                                            content: Container(
+                                                height: 40.0,
+                                                child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                          "No folder has been selected.",
+                                                                                    textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),)
+                                                    ])),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  'Ok',
+                                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                                                ),
+                                              ),
+
                                             ],
                                           );
                                         });
@@ -562,21 +596,21 @@ class _OpeningPage extends State<OpeningPage> {
                                     ],
                                   ),
                                 ),
-                                Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                      top: 40,
-                                      bottom: 20,
-                                    ),
-                                    child: Text(
-                                      'Icon (swipe for more)',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade700,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                // Center(
+                                //   child: Padding(
+                                //     padding: EdgeInsets.only(
+                                //       top: 40,
+                                //       bottom: 20,
+                                //     ),
+                                //     child: Text(
+                                //       'Icon (swipe for more)',
+                                //       style: TextStyle(
+                                //         color: Colors.grey.shade700,
+                                //         fontWeight: FontWeight.bold,
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
 
                                 // SingleChildScrollView(
                                 //   scrollDirection: Axis.horizontal,
@@ -689,14 +723,14 @@ class _OpeningPage extends State<OpeningPage> {
                         // padding: EdgeInsets.only(right: 10,),
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
-                        itemCount: words.length,
+                        itemCount: folder.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: FlatButton(
                               shape: Border(
                                 left: BorderSide(
-                                    color: words[index].folderColor, width: 5),
+                                    color: folder[index].folderColor, width: 5),
                                 right: BorderSide(
                                   width: 1,
                                   color: Colors.grey.shade300,
@@ -712,9 +746,10 @@ class _OpeningPage extends State<OpeningPage> {
                               ),
                               onPressed: () {
                                 //do something
+
                                 SearchFilter()
                                     .createState()
-                                    .folderColor(words[index].folderColor);
+                                    .folderColor(folder[index].folderColor);
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -730,11 +765,11 @@ class _OpeningPage extends State<OpeningPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Icon(
-                                      words[index].iconName,
-                                      color: words[index].folderColor,
+                                      folder[index].iconName,
+                                      color: folder[index].folderColor,
                                     ),
                                     Text(
-                                      '${words[index].folderName}',
+                                      '${folder[index].folderName}',
                                       style: TextStyle(
                                         color: Colors.grey.shade700,
                                         fontWeight: FontWeight.bold,
