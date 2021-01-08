@@ -2,61 +2,74 @@ import 'package:central_comms/opening.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-class MyClass {
+class Article {
   String date;
   String description;
-  Color folderColor;
-  MyClass(this.date, this.description, this.folderColor);
+  Color color;
+  Article(this.date, this.description, this.color);
 }
 
 class SearchFilter extends StatefulWidget {
-  SearchFilter({Key key, MyClass word}) : super(key: key);
+  SearchFilter({Key key, Article article}) : super(key: key);
 
   @override
   _SearchFilterState createState() => new _SearchFilterState();
 }
 
 class _SearchFilterState extends State<SearchFilter> {
+  Color filterC = Colors.transparent;
   TextEditingController editingController = TextEditingController();
-
-  final duplicateItems = List<String>.generate(10000, (i) => "Item $i");
-  Color filterC;
-  // var items = List<String>();
-
-  void folderColor(Color folder) {
-    filterC = folder;
-    print(filterC);
-  }
-
-  List<MyClass> words = [
-    MyClass(
-        '22 Dec',
-        "And there are miles of lorries parked on the M20 to Dover.",
-        Colors.amber),
-    MyClass(
-        '21 Nov',
-        "Here’s the view from the roof of one of the thousands of lorries parked in Manston airport in Kent.",
-        Colors.red),
-    MyClass(
-        '20 Oct',
-        "People who fail to get vaccine could be banned from using public transport in France, according to a draft law sparking angry protests from opposition politicians, AFP reports.",
-        Colors.black),
-    MyClass(
-        '19 Sep',
-        "Hospitals in the Netherlands have said they will postpone all non-critical care in the coming weeks in order to deal with the rapid rise in Covid patients, Reuters reports.",
-        Colors.black),
-    MyClass(
-        '18 Aug',
-        "We are giving it the final push”, the EU’s chief Brexit negotiator, Michael Barnier has told reporters in Brussels.",
-        Colors.green),
-    MyClass('17 Jul', "Sturgeon warns of possible lockdown.", Colors.green),
-  ];
 
   @override
   void initState() {
     super.initState();
     print(filterC);
   }
+
+  final duplicateItems = List<String>.generate(10000, (i) => "Item $i");
+
+  void folderColor(Color color) {
+    filterC = color;
+    print(filterC);
+  }
+
+  bool compareColors(int index) {
+    if (filterC.blue == article[index].color.blue &&
+        filterC.green == article[index].color.green &&
+        filterC.red == article[index].color.red) {
+      print('same color, $index');
+      return true;
+    } else {
+      print('different color, $index');
+      return false;
+    }
+  }
+
+  List<Folder> folder = [];
+
+  List<Article> article = [
+    Article(
+        '22 Dec',
+        "And there are miles of lorries parked on the M20 to Dover.",
+        Colors.amber),
+    Article(
+        '21 Nov',
+        "Here’s the view from the roof of one of the thousands of lorries parked in Manston airport in Kent.",
+        Colors.red),
+    Article(
+        '20 Oct',
+        "People who fail to get vaccine could be banned from using public transport in France, according to a draft law sparking angry protests from opposition politicians, AFP reports.",
+        Colors.black),
+    Article(
+        '19 Sep',
+        "Hospitals in the Netherlands have said they will postpone all non-critical care in the coming weeks in order to deal with the rapid rise in Covid patients, Reuters reports.",
+        Colors.black),
+    Article(
+        '18 Aug',
+        "We are giving it the final push”, the EU’s chief Brexit negotiator, Michael Barnier has told reporters in Brussels.",
+        Colors.green),
+    Article('17 Jul', "Sturgeon warns of possible lockdown.", Colors.green),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -89,37 +102,42 @@ class _SearchFilterState extends State<SearchFilter> {
                   left: 10,
                 ),
                 shrinkWrap: true,
-                itemCount: words.length,
+                itemCount: article.length,
+                // ignore: missing_return
                 itemBuilder: (context, index) {
                   if (editingController.text.isEmpty) {
                     // search bar is empty
+
+                    // if (filterC.equals()) {
+                    //   print(index);
+                    // }
+                    compareColors(index);
 
                     return Dismissible(
                       key: UniqueKey(), //changed from original
 
                       onDismissed: (direction) {
                         setState(() {
-                          words.removeAt(index);
+                          article.removeAt(index);
                         });
 
-                        // Then show a snackbar.
                         Scaffold.of(context).showSnackBar(SnackBar(
                             // content: Text('deleted "${words[index].description}" that was posted on ${words[index].date}')));
-                            content: Text("delete $index")));
+                            content: Text("deleted $index")));
                       },
 
                       background: Container(color: Colors.red),
 
                       child: Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 5),
-                        child: widget1(words, index),
+                        child: widget1(article, index),
                       ),
                     );
-                  } else if (words[index]
+                  } else if (article[index]
                           .date
                           .toLowerCase()
                           .contains(editingController.text) ||
-                      words[index]
+                      article[index]
                           .description
                           .toLowerCase()
                           .contains(editingController.text)) {
@@ -130,7 +148,7 @@ class _SearchFilterState extends State<SearchFilter> {
 
                       onDismissed: (direction) {
                         setState(() {
-                          words.removeAt(index);
+                          article.removeAt(index);
                         });
 
                         // Then show a snackbar.
@@ -143,32 +161,9 @@ class _SearchFilterState extends State<SearchFilter> {
 
                       child: Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 5),
-                        child: widget1(words, index),
+                        child: widget1(article, index),
                       ),
                     );
-                  } else if (words[index].folderColor == filterC) {
-                    print('$index');
-                    //                     return Dismissible(
-                    //   key: UniqueKey(), //changed from original
-
-                    //   onDismissed: (direction) {
-                    //     setState(() {
-                    //       words.removeAt(index);
-                    //     });
-
-                    //     // Then show a snackbar.
-                    //     Scaffold.of(context).showSnackBar(SnackBar(
-                    //         // content: Text('deleted "${words[index].description}" that was posted on ${words[index].date}')));
-                    //         content: Text("delete $index")));
-                    //   },
-
-                    //   background: Container(color: Colors.red),
-
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(top: 5, bottom: 5),
-                    //     child: widget1(words, index),
-                    //   ),
-                    // );
                   } else {
                     return Container(); // return nothing
                   }
@@ -181,10 +176,10 @@ class _SearchFilterState extends State<SearchFilter> {
   }
 }
 
-Widget widget1(List<MyClass> words, int index) {
+Widget widget1(List<Article> words, int index) {
   return FlatButton(
     shape: Border(
-      left: BorderSide(color: words[index].folderColor, width: 5),
+      left: BorderSide(color: words[index].color, width: 5),
       right: BorderSide(
         width: 1,
         color: Colors.grey.shade300,
@@ -202,11 +197,6 @@ Widget widget1(List<MyClass> words, int index) {
       //do something
     },
     child: Container(
-      // decoration: BoxDecoration(
-      //   border: Border.all(
-      //     color: Colors.grey.shade300,
-      //   ),
-      // ),
       child: ListTile(
         leading: Column(
           mainAxisAlignment: MainAxisAlignment.center,
